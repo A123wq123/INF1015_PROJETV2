@@ -1,0 +1,1 @@
+﻿// Cpp pour la classe fou. 
