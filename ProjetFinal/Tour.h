@@ -4,7 +4,7 @@
 #include "Case.h"
 #include "Echiquier.h"
 #include <vector>
-class Tour : public ABSPiece {
+class Tour : public Piece {
 
 public:
 	Tour();
