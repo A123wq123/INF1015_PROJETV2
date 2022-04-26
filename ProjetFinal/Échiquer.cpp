@@ -18,8 +18,20 @@ void Echiquier::addPiece(std::shared_ptr<Piece> piece, int row, int collumn) {
 
 
 void Echiquier::movePiece(std::shared_ptr<Case> caseOfPiece, std::shared_ptr<Case> caseToGo) {
-	std::shared_ptr<Piece> pieceToMove = caseOfPiece->getPiece();
-	caseToGo->addPiece(pieceToMove);
-	caseOfPiece->removePiece();
+	//std::shared_ptr<Piece> pieceToMove = caseOfPiece->getPiece();
+	//caseToGo->addPiece(pieceToMove);
+	//caseOfPiece->removePiece();
+
+	if (caseOfPiece->getPiece()->checkIfValidMove(caseToGo)) {
+		std::shared_ptr<Piece> pieceToMove = caseOfPiece->getPiece();
+		caseToGo->addPiece(pieceToMove);
+		caseOfPiece->removePiece();
+
+		// probablement trouver le moyen d'envoyer un signal ici pour dire que le board à changer.
+	}
+
+	else {
+		// do nothing, probablement turn off des indicateurs visuels à faire ici. 
+	}
 
 }
