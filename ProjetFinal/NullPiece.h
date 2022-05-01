@@ -3,17 +3,23 @@
 
 class NullPiece : Piece {
 public:
-	NullPiece();
+	NullPiece(std::shared_ptr<Square> &square);
 	~NullPiece() = default;
 
 	virtual void checkPossibleMoves();
-	virtual bool checkIfValidMove(std::shared_ptr<Case> caseToGo);
+	virtual bool checkIfValidMove(std::shared_ptr<Square> caseToGo);
 
-	const std::vector<std::shared_ptr<Case>> getVectorPossibleMoves() { return vectorPossibleMoves_; }
+	const std::vector<std::shared_ptr<Square>> getVectorPossibleMoves() { return vectorPossibleMoves_; }
 	void clearVectorPossibleMoves() { vectorPossibleMoves_.clear(); }
+	virtual void setCase(std::shared_ptr<Square> squarePtr) { square_ = squarePtr;  }
+	virtual void getColor() { return color_; }
 
 private:
-	std::vector<std::shared_ptr<Case>> vectorPossibleMoves_;
+	std::vector<std::shared_ptr<Square>> vectorPossibleMoves_;
+	std::shared_ptr<Square> square_;
+	int row_;
+	int collomn_;
+	std::string color_;
 };
 
 

@@ -3,22 +3,24 @@
 #include <utility>
 
 
-class Case {
+class Square {
 public:
-	Case(int posX, int posy, bool isWhite);
-	~Case() = default;
+	Square(int row, int colloumn, bool isWhite);
+	~Square() = default;
 
 	const std::shared_ptr<Piece> getPiece() { return piecePtr_; }
 	bool isCaseWhite() { return isWhite_; }
 
-	std::pair<const int, const int> getCoordinates() { return std::make_pair(posX_, posY_); }
+
+	// could be useless but idk yet
+	std::pair<const int, const int> getCoordinates() { return std::make_pair(row_, colloumn_); }
 
 	void addPiece(std::shared_ptr<Piece> piecePtr);
 	void removePiece();
 
 private:
 	bool isWhite_;
-	int posX_;
-	int posY_;
+	int row_;
+	int colloumn_;
 	std::shared_ptr<Piece> piecePtr_;
 };

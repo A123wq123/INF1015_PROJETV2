@@ -1,4 +1,3 @@
 #include "Piece.h"
 
-Piece::Piece() {
-}
+// la classe étant abstraite l'utilitée de ce fichier viens de disparaître. 

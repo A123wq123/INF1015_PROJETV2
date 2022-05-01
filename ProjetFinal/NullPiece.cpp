@@ -1,6 +1,6 @@
 #include "NullPiece.h"
 
-NullPiece::NullPiece() : Piece(), vectorPossibleMoves_() {
+NullPiece::NullPiece(std::shared_ptr<Square>& square) : Piece(), vectorPossibleMoves_(), square_(square), color_("Null") {
 
 }
 
@@ -8,20 +8,7 @@ void NullPiece::checkPossibleMoves() {
 	// Do nothing for the piece has no possible moves. 
 }
 
-bool NullPiece::checkIfValidMove(std::shared_ptr<Case> caseToGo) {
-	if (vectorPossibleMoves_.empty()) {
-		// si le vecteur est vide le créer. 
+bool NullPiece::checkIfValidMove(std::shared_ptr<Square> squareToGo) {
 
-	}
-
-	for (auto&& move : vectorPossibleMoves_) {
-
-		if (caseToGo == move) {
-			return true;
-		}
-
-		else {
-			return false;
-		}
-	}
+	return false;
 }

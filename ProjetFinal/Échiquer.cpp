@@ -1,31 +1,34 @@
 ﻿#include "Echiquier.h"
 
 
-Echiquier::Echiquier() : vectorCase_() {
+Echiquier::Echiquier() : vectorSquare_() {
 	bool isWhite = false;
 	for (int row = 0; row < getNumberOfRows(); row++) {
 		!isWhite;           // Alterne le noir blanc à chaque ligne.
 		for (int collumn = 0; collumn < getNumberOfCollumns(); collumn++) {
-			vectorCase_[row][collumn] = std::make_shared<Case>(Case(row, collumn, isWhite));
+			vectorSquare_[row][collumn] = std::make_shared<Square>(Square(row, collumn, isWhite));
 			!isWhite;       // alterne le noir blanc à chaque colonne. 
 		}
 	}
 }
 
 void Echiquier::addPiece(std::shared_ptr<Piece> piece, int row, int collumn) {
-	getVectorCase()[row][collumn]->addPiece(piece);
+	getVectorSquare()[row][collumn]->addPiece(piece);
 }
 
 
-void Echiquier::movePiece(std::shared_ptr<Case> caseOfPiece, std::shared_ptr<Case> caseToGo) {
+// La méthode move piece est sujette a disparaître car on vas passer par la création d'un objet
+// move qui lui se charge de gèrer le move. 
+
+void Echiquier::movePiece(std::shared_ptr<Square> squareOfPiece, std::shared_ptr<Square> squareToGo) {
 	//std::shared_ptr<Piece> pieceToMove = caseOfPiece->getPiece();
 	//caseToGo->addPiece(pieceToMove);
 	//caseOfPiece->removePiece();
 
-	if (caseOfPiece->getPiece()->checkIfValidMove(caseToGo)) {
-		std::shared_ptr<Piece> pieceToMove = caseOfPiece->getPiece();
-		caseToGo->addPiece(pieceToMove);
-		caseOfPiece->removePiece();
+	if (squareOfPiece->getPiece()->checkIfValidMove(squareToGo)) {
+		std::shared_ptr<Piece> pieceToMove = squareOfPiece->getPiece();
+		squareToGo->addPiece(pieceToMove);
+		squareOfPiece->removePiece();
 
 		// probablement trouver le moyen d'envoyer un signal ici pour dire que le board à changer.
 	}
