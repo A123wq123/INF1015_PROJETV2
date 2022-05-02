@@ -1,54 +1,43 @@
 #include "Tour.h"
 static const int numberofRowOrCollumn = 8;
-Tour::Tour() {
+Tour::Tour(std::shared_ptr<Square>& square, std::string color) : square_(square), row_(square->getCoordinates().first)
+, collomn_(square->getCoordinates().second), color_(color) {
 
 }
+std::vector<std::shared_ptr<Square>> Tour::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
+	std::vector<std::shared_ptr<Square>> vectorPossibleMoves{};
 
-Tour::~Tour() {
-
-}
-void Tour::checkPossibleMoves() {
-	if (vectorLegalMovesGenerated_ )
+	// regarde pour les déplacements verticaux 
+	for (int counter = 0; counter < numberofRowOrCollumn; counter++)
 	{
+		std::shared_ptr<Square> squareBeingChecked = echiquier->getCase(square_->getCoordinates().first, counter);
+		if (checkIfValidMove(squareBeingChecked, echiquier))
+		{
+			vectorPossibleMoves.push_back(squareBeingChecked);
+		}
 
 	}
-	else
+
+	// regarde pour les déplacements horizontaux
+	for (int counter = 0; counter < numberofRowOrCollumn; counter++)
 	{
-		for (int counter = 0; counter < numberofRowOrCollumn; counter++)
+		std::shared_ptr<Square> squareBeingChecked = echiquier->getCase(counter, square_->getCoordinates().second);
+		if (checkIfValidMove(squareBeingChecked, echiquier))
 		{
-			if (checkIfValidMove(case_->getRow(), counter))
-			{
-				vectorLegalMoves_.push_back((echiquier_->getVectorCase())[counter][case_->getRow()]);
-
-			}
+			vectorPossibleMoves.push_back(squareBeingChecked);
 
 		}
-		for (int counter = 0; counter < numberofRowOrCollumn; counter++)
-		{
-			if (checkIfValidMove(counter, case_->getCollumn()))
-			{
-				vectorLegalMoves_.push_back((echiquier_->getVectorCase())[case_->getCollumn()][counter]);
-
-			}
-		}
-		vectorLegalMovesGenerated_ = true; // il faut "output" les mouvements légales sur le UI
 	}
-
+	return vectorPossibleMoves;
 }
 
 
-
-void Tour::movePiece() {
-
+bool Tour::checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier) {
 
 
 
 
-}
 
-
-
-bool Tour::checkIfValidMove(int posX, int posY) {
 	if (case_->getCollumn() == posX)
 	{
 		if (posY > case_->getRow())

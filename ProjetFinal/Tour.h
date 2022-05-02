@@ -1,22 +1,20 @@
 #pragma once
 #pragma once
 #include "Piece.h"
-#include "Case.h"
+#include "Square.h"
 #include "Echiquier.h"
 #include <vector>
 class Tour : public Piece {
 
 public:
-	Tour();
-	~Tour();
-	void checkPossibleMoves() override;
-	void movePiece() override;
-	bool checkIfValidMove(int posX, int posY) override;
+	Tour(std::shared_ptr<Square>& square, std::string color);
+	~Tour() = default;
+	std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) override;
+	bool checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier) override;
 
 private:
-	std::unique_ptr<Case> case_;
-	std::string name_;
-	std::unique_ptr<Echiquier> echiquier_;
-	std::vector<std::unique_ptr<Case>> vectorLegalMoves_;
-	bool vectorLegalMovesGenerated_;
+	std::shared_ptr<Square> square_;
+	int row_;
+	int collomn_;
+	std::string color_;
 };

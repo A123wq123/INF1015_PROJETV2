@@ -6,8 +6,8 @@ public:
 	NullPiece(std::shared_ptr<Square> &square);
 	~NullPiece() = default;
 
-	virtual std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier> echiquier);
-	virtual bool checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier> echiquier);
+	virtual std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) override;
+	virtual bool checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier)override;
 
 	//const std::vector<std::shared_ptr<Square>> getVectorPossibleMoves() { return vectorPossibleMoves_; }
 	//void clearVectorPossibleMoves() { vectorPossibleMoves_.clear(); }
