@@ -9,6 +9,7 @@ public:
 	~Square() = default;
 
 	const std::shared_ptr<Piece> getPiece() { return piecePtr_; }
+	bool isOccupied();
 	bool isCaseWhite() { return isWhite_; }
 
 

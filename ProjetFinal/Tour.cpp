@@ -38,74 +38,62 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 	int currentCollumn = square_->getCoordinates().second;
 	int destCollumn = squareDest->getCoordinates().second;
 
+	// check if end pos is same as start.
 	if (square_ == squareDest) {
 		return false;
 		// might want to return true vus que c'est un déplacement de la case A vers elle même mais vas falloir voir avec le code. 
 	}
 
+	// check we are tried to eat a same collored piece. 
+	else if (squareDest->getPiece()->getColor() == color_) {
+		return false;
+	}
+
+	// check if move is horizontal
 	else if (currentRow == destRow) {
+		int diff = currentCollumn - destCollumn;
 
-	}
-
-
-
-	/*if (case_->getCollumn() == posX)
-	{
-		if (posY > case_->getRow())
-		{
-			int difference = posY - case_->getRow();
-			for (int counter = 0; counter < difference; counter++)
-			{
-				if (echiquier_->getVectorCase()[case_->getCollumn()][(case_->getRow() + counter)]->getIsOccupied())
-				{
+		// check if piece in the way of move
+		if (diff > 0) {
+			for (int i = 1; i <= diff; i++) {
+				if (echiquier->getCase(currentRow, currentCollumn - i)->isOccupied()) {
 					return false;
 				}
-
 			}
 			return true;
 		}
-		if (posY < case_->getRow())
-		{
-			int difference = case_->getRow() - posY;
-			for (int counter = 0; counter < difference; counter++)
-			{
-				if (echiquier_->getVectorCase()[case_->getCollumn()][(case_->getRow() - counter)]->getIsOccupied())
-				{
+
+		else if (diff < 0) {
+			for (int i = 1; i <= abs(diff); i++) {
+				if (echiquier->getCase(currentRow, currentCollumn + i)->isOccupied()) {
 					return false;
 				}
-
 			}
 			return true;
 		}
 	}
 
+	// Check if move is vectical.
+	else if (currentCollumn == destCollumn) {
+		int diff = currentRow - destRow;
 
-	else if (case_->getRow() == posY) {
-		if (posX > case_->getCollumn())
-		{
-			int difference = posX - case_->getCollumn();
-			for (int counter = 0; counter < difference; counter++)
-			{
-				if (echiquier_->getVectorCase()[case_->getRow()][(case_->getCollumn() + counter)]->getIsOccupied())
-				{
+		// Check if piece in way of move. 
+		if (diff > 0) {
+			for (int i = 1; i <= diff; i++) {
+				if (echiquier->getCase(currentRow - i, currentCollumn)->isOccupied()) {
 					return false;
 				}
-
 			}
 			return true;
 		}
-		if (posX < case_->getCollumn())
-		{
-			int difference = case_->getCollumn() - posX;
-			for (int counter = 0; counter < difference; counter++)
-			{
-				if (echiquier_->getVectorCase()[case_->getRow()][(case_->getCollumn() - counter)]->getIsOccupied())
-				{
+
+		else if (diff < 0) {
+			for (int i = 1; i <= abs(diff); i++) {
+				if (echiquier->getCase(currentRow + i, currentCollumn)->isOccupied()) {
 					return false;
 				}
-
 			}
 			return true;
 		}
-	}*/
+	}
 }

@@ -2,7 +2,7 @@
 #pragma once
 #include <Vector>
 #include <memory>
-#include "Case.h"
+#include "Square.h"
 #include "NullPiece.h"
 class Echiquier
 {

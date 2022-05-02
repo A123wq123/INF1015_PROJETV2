@@ -7,6 +7,11 @@ Square::Square(int row, int colloumn, bool isWhite) : row_(row), colloumn_(collo
 	piecePtr_ = std::make_shared<NullPiece>(NullPiece(square));
 }
 
+bool Square::isOccupied() {
+	std::shared_ptr<NullPiece> nullPieceptr = std::dynamic_pointer_cast<NullPiece>(piecePtr_);
+
+}
+
 void Square::addPiece(std::shared_ptr<Piece> piecePtr) {
 	removePiece();
 	piecePtr_ = piecePtr;
