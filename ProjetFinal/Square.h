@@ -1,26 +1,9 @@
-﻿#ifndef PIECE_H
-#define PIECE_H
-#include "Piece.h"
-#endif
-
-#ifndef MEMORY_H
-#define MEMORY_H
+﻿#pragma once
 #include <memory>
-#endif
-
-#ifndef UTILITY_H
-#define UTILITY_H
+#include "Piece.h"
 #include <utility>
-#endif
 
-
-
-//#pragma once
-//#include "Echiquier.h"
-//#include "Piece.h"
-//#include <utility>
-//#include <memory>
-//#pragma once
+class Piece;
 
 class Square {
 public:

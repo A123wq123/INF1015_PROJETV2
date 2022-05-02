@@ -1,16 +1,9 @@
-﻿#ifndef SQUARE_H
-#define SQUARE_H
-#include "Square.h"
-#endif
-
-#ifndef NULLPIECE_H
-#define NULLPIECE_H
+﻿#include "Square.h"
 #include "NullPiece.h"
-#endif
 
 Square::Square(int row, int colloumn, bool isWhite) : row_(row), colloumn_(colloumn), isWhite_(isWhite)
 {
-	std::shared_ptr<Square> square = std::make_shared<Square>(this);
+	std::shared_ptr<Square> square = std::shared_ptr<Square>(this);
 	piecePtr_ = std::make_shared<NullPiece>(NullPiece(square));
 }
 
@@ -29,6 +22,6 @@ void Square::addPiece(std::shared_ptr<Piece> piecePtr) {
 }
 
 void Square::removePiece() {
-	std::shared_ptr<Square> square = std::make_shared<Square>(this);
+	std::shared_ptr<Square> square = std::shared_ptr<Square>(this);
 	piecePtr_ = std::make_shared<NullPiece>(NullPiece(square));
 }

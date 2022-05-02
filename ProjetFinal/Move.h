@@ -1,22 +1,8 @@
-#ifndef MEMORY_H
-#define MEMORY_H
-#include <memory>
-#endif
-
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once
 #include <vector>
-#endif
-
-#ifndef SQUARE_H
-#define SQUARE_H
-#include "Square.h"
-#endif
-
-#ifndef ECHIQUIER_H
-#define ECHIQUIER_H
+#include <memory>
 #include "Echiquier.h"
-#endif 
+#include "Square.h"
 
 // Ce header sert à définir la classe qui est en charge de gèrer un mouvement de piece sur le board. 
 

@@ -1,7 +1,4 @@
-#ifndef NULLPIECE_H
-#define NULLPIECE_H
 #include "NullPiece.h"
-#endif
 
 NullPiece::NullPiece(std::shared_ptr<Square>& square) : Piece(), square_(square), row_(square->getCoordinates().first) 
 , collomn_(square->getCoordinates().second), color_("Null") {

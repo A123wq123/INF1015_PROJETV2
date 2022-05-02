@@ -1,16 +1,5 @@
-#ifndef PIECE_H
-#define PIECE_H
+#pragma once
 #include "Piece.h"
-#endif
-
-
-
-//#pragma once
-//#include "Piece.h"
-//#include "Square.h"
-//#include "Echiquier.h"
-//#include <vector>
-//#pragma once
 
 class Tour : public Piece {
 

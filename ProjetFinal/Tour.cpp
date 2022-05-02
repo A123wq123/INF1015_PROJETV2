@@ -1,7 +1,4 @@
-#ifndef TOUR_H
-#define TOUR_H
 #include "Tour.h"
-#endif
 
 //#pragma once
 //#include "Tour.h"

@@ -1,7 +1,4 @@
-#ifndef MOVE_H
-#define MOVE_H
 #include "Move.h"
-#endif
 
 std::vector<std::shared_ptr<Square>> Move::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
 	// Ajouter ici que si king en check IMMÉDIATEMENT retourner un vecteur vide. 

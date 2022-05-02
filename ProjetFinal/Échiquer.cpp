@@ -1,8 +1,5 @@
-﻿#ifndef ECHIQUIER_H
-#define ECHIQUIER_H
+﻿
 #include "Echiquier.h"
-#endif
-
 
 Echiquier::Echiquier() : vectorSquare_() {
 	bool isWhite = false;

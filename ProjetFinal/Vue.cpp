@@ -1,7 +1,4 @@
-#ifndef VUE_H
-#define VUE_H
 #include "Vue.h"
-#endif
 
 //#include "Vue.h"
 //#pragma once
