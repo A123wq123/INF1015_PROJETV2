@@ -1,6 +1,8 @@
 #include "Move.h"
 
 std::vector<std::shared_ptr<Square>> Move::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
+	// Ajouter ici que si king en check IMMÉDIATEMENT retourner un vecteur vide. 
+	// Ne pas oublier que cette if statement dois être invalid si la piece est un ROI. 
 	return this->getPiece()->checkPossibleMoves(echiquier);
 }
 
@@ -9,13 +11,7 @@ bool Move::checkIfValidMove(std::unique_ptr<Echiquier>& echiquier) {
 }
 
 void Move::executeMove(std::unique_ptr<Echiquier>& echiquier) {
-	if (checkIfValidMove(echiquier)) {
-		endSquare_->addPiece(startSquare_->getPiece());
-		startSquare_->removePiece();
-	}
-	else {
-		// the move is invalid, send info in console to signify?
-	}
-
-	// Ajouter signal to update UI?
+	// Cette méthode ne fait qu'executer le déplacement, TOUT test doit être fait AVANT l'exécution de cette méthode. 
+	endSquare_->addPiece(startSquare_->getPiece());
+	startSquare_->removePiece();
 }

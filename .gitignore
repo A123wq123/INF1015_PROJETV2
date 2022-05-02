@@ -3,4 +3,3 @@
 ProjetFinal/**
 !ProjetFinal/*.cpp
 !ProjetFinal/*.h
-!ProjetFinal/*sln
