@@ -32,13 +32,24 @@ std::vector<std::shared_ptr<Square>> Tour::checkPossibleMoves(std::unique_ptr<Ec
 }
 
 
-bool Tour::checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier) {
+bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<Echiquier>& echiquier) {
+	int currentRow = square_->getCoordinates().first;
+	int destRow = squareDest->getCoordinates().first;
+	int currentCollumn = square_->getCoordinates().second;
+	int destCollumn = squareDest->getCoordinates().second;
+
+	if (square_ == squareDest) {
+		return false;
+		// might want to return true vus que c'est un déplacement de la case A vers elle même mais vas falloir voir avec le code. 
+	}
+
+	else if (currentRow == destRow) {
+
+	}
 
 
 
-
-
-	if (case_->getCollumn() == posX)
+	/*if (case_->getCollumn() == posX)
 	{
 		if (posY > case_->getRow())
 		{
@@ -96,5 +107,5 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Ec
 			}
 			return true;
 		}
-	}
+	}*/
 }
