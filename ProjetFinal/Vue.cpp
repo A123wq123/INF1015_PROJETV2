@@ -1,4 +1,11 @@
+#ifndef VUE_H
+#define VUE_H
 #include "Vue.h"
+#endif
+
+//#include "Vue.h"
+//#pragma once
+
 static const int numberRows = 8;
 static const int numberCollums = 8;
 static int counter = 0;

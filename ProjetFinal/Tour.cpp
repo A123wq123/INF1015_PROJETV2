@@ -1,4 +1,12 @@
+#ifndef TOUR_H
+#define TOUR_H
 #include "Tour.h"
+#endif
+
+//#pragma once
+//#include "Tour.h"
+//#pragma once
+
 static const int numberofRowOrCollumn = 8;
 Tour::Tour(std::shared_ptr<Square>& square, std::string color) : square_(square), row_(square->getCoordinates().first)
 , collomn_(square->getCoordinates().second), color_(color) {

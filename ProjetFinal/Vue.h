@@ -1,5 +1,5 @@
-#pragma once
-#pragma once
+#ifndef GENERAL_VUE_H
+#define GENERAl_VUE_H
 #include <QApplication>
 #include <QMainWindow>
 #include <QPushButton>
@@ -7,6 +7,8 @@
 #include <QWidget>
 #include <Qpoint>
 #include <QMargins>
+#endif
+
 // The header pour l'affichage Qt
 class Vue : public QMainWindow {
 	Q_OBJECT

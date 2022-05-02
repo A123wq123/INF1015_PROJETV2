@@ -1,5 +1,33 @@
-#pragma once
+#ifndef VECTOR_H
+#define VECTOR_H
+#include <vector>
+#endif
+
+#ifndef MEMORY_H
+#define MEMORY_H
+#include <memory>
+#endif
+
+#ifndef STRING_H
+#define STRING_H
+#include <string>
+#endif
+
+#ifndef PIECE_H
+#define PIECE_H
 #include "Piece.h"
+#endif
+
+#ifndef SQUARE_H
+#define SQUARE_H
+#include "Square.h"
+#endif
+
+#ifndef ECHIQUIER_H
+#define ECHIQUIER_H
+#include "Echiquier.h"
+#endif
+
 
 class NullPiece : Piece {
 public:

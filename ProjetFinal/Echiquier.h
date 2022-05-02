@@ -1,16 +1,30 @@
-#pragma once
-#pragma once
-#include <Vector>
+#ifndef VECTOR_H
+#define VECTOR_H
+#include <vector>
+#endif
+
+#ifndef MEMORY_H
+#define MEMORY_H
 #include <memory>
+#endif
+
+#ifndef PIECE_H
+#define PIECE_H
+#include "Piece.h"
+#endif
+
+#ifndef SQUARE_H
+#define SQUARE_H
 #include "Square.h"
-#include "NullPiece.h"
+#endif 
+
 class Echiquier
 {
 public:
 	Echiquier();
 	~Echiquier() = default;
 	void addPiece(std::shared_ptr<Piece> piece, int row, int collumn);
-	void movePiece(std::shared_ptr<Square> squareSelected, std::shared_ptr<Square> squareToGo);
+	//void movePiece(std::shared_ptr<Square> squareSelected, std::shared_ptr<Square> squareToGo);
 
 	std::vector<std::vector<std::shared_ptr<Square>>> getVectorSquare() const {
 		return vectorSquare_;

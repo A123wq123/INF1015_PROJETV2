@@ -1,5 +1,12 @@
-﻿#include "Square.h"
+﻿#ifndef SQUARE_H
+#define SQUARE_H
+#include "Square.h"
+#endif
+
+#ifndef NULLPIECE_H
+#define NULLPIECE_H
 #include "NullPiece.h"
+#endif
 
 Square::Square(int row, int colloumn, bool isWhite) : row_(row), colloumn_(colloumn), isWhite_(isWhite)
 {
@@ -8,8 +15,12 @@ Square::Square(int row, int colloumn, bool isWhite) : row_(row), colloumn_(collo
 }
 
 bool Square::isOccupied() {
-	std::shared_ptr<NullPiece> nullPieceptr = std::dynamic_pointer_cast<NullPiece>(piecePtr_);
-
+	//std::shared_ptr<NullPiece> nullPieceptr = std::dynamic_pointer_cast<NullPiece>(piecePtr_);
+	NullPiece* nullPiecePtr = dynamic_cast<NullPiece*>(piecePtr_.get());
+	if (nullPiecePtr == nullptr) {
+		return true;
+	}
+	return false;
 }
 
 void Square::addPiece(std::shared_ptr<Piece> piecePtr) {

@@ -1,11 +1,19 @@
-﻿#include <QApplication>
+﻿//#pragma once
+#ifndef GENERAL_UTILITY_H
+#define GENERAL_UTILITY_H
+#include <QApplication>
 #include <QFont>
 #include <QLCDNumber>
 #include <QPushButton>
 #include <QSlider>
 #include <QVBoxLayout>
 #include <QWidget>
+#endif
+
+#ifndef VUE_H
+#define VUE_H
 #include "Vue.h"
+#endif
 
 class MyWidget : public QWidget
 {
