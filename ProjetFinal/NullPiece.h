@@ -6,16 +6,14 @@ public:
 	NullPiece(std::shared_ptr<Square> &square);
 	~NullPiece() = default;
 
-	virtual void checkPossibleMoves();
-	virtual bool checkIfValidMove(std::shared_ptr<Square> caseToGo);
+	virtual std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier> echiquier);
+	virtual bool checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier> echiquier);
 
-	const std::vector<std::shared_ptr<Square>> getVectorPossibleMoves() { return vectorPossibleMoves_; }
-	void clearVectorPossibleMoves() { vectorPossibleMoves_.clear(); }
-	virtual void setCase(std::shared_ptr<Square> squarePtr) { square_ = squarePtr;  }
-	virtual void getColor() { return color_; }
+	//const std::vector<std::shared_ptr<Square>> getVectorPossibleMoves() { return vectorPossibleMoves_; }
+	//void clearVectorPossibleMoves() { vectorPossibleMoves_.clear(); }
 
 private:
-	std::vector<std::shared_ptr<Square>> vectorPossibleMoves_;
+	//std::vector<std::shared_ptr<Square>> vectorPossibleMoves_;
 	std::shared_ptr<Square> square_;
 	int row_;
 	int collomn_;
