@@ -18,20 +18,18 @@ public:
 	virtual bool checkIfValidMove(std::shared_ptr<Square> squareToGo, std::unique_ptr<Echiquier>& echiquier) = 0;
 	// Hesite a passer a une classe move pour permettre la sauvegarde des positions. 
 
-	virtual void setCase(std::shared_ptr<Square> squarePtr) { square_ = squarePtr; }
+	virtual void setCase(std::shared_ptr<Square> squarePtr) = 0;
 
-	virtual const std::string getColor() {
-		return color_;
-	};
+	virtual const std::string getColor() = 0;
 
 	// dependament de comment le code évolue il serait interessant de rajouter une methode virtuelle pure move(). 
 
 private:
 	//std::vector<std::shared_ptr<Square>> vectorPossibleMoves_;
-	std::shared_ptr<Square> square_;
+	/*std::shared_ptr<Square> square_;
 	int row_;
 	int collomn_;
-	std::string color_;
+	std::string color_;*/
 };
 
 #endif
