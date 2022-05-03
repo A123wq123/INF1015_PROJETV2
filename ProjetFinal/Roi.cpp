@@ -4,15 +4,19 @@
 Roi::Roi(std::shared_ptr<Square>& square, std::string color) : square_(square), row_(square->getCoordinates().first), 
 	collumn_(square->getCoordinates().second), color_(color) {
 	// Create vector of all possible vectorial moves. 
-	vectorMovementVectoriels_  = { std::make_pair(-1, -1), std::make_pair(-1, 0), std::make_pair(-1, 1),
+}
+
+const std::vector<std::pair<int, int>> Roi::returnVectorMovementVectoriels() {
+	static std::vector<std::pair<int, int>> vectorMovementVectoriels_ = { std::make_pair(-1, -1), std::make_pair(-1, 0), std::make_pair(-1, 1),
 	std::make_pair(0, -1), std::make_pair(0, 0), std::make_pair(0, 1), std::make_pair(1, -1), std::make_pair(1, 0), std::make_pair(1, 1) };
+	return vectorMovementVectoriels_;
 }
 
 std::vector<std::shared_ptr<Square>> Roi::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
 	std::vector<std::shared_ptr<Square>> vectorPossibleMoves{};
 
 	// Iterate over all possible vectorial moves 
-	for (auto&& mouvement : vectorMovementVectoriels_) {
+	for (auto&& mouvement : returnVectorMovementVectoriels()) {
 		int destRow = row_ + mouvement.first;
 		int destCollumn = collumn_ + mouvement.second;
 
@@ -25,4 +29,10 @@ std::vector<std::shared_ptr<Square>> Roi::checkPossibleMoves(std::unique_ptr<Ech
 		}
 	}
 
+	return vectorPossibleMoves;
+
+}
+
+bool Roi::checkIfValidMove(std::shared_ptr<Square> squareToGo, std::unique_ptr<Echiquier>& echiquier) {
+	return false;
 }

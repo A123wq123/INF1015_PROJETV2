@@ -18,6 +18,9 @@ public:
 
 	virtual void setCase(std::shared_ptr<Square> squarePtr) { square_ = squarePtr; }
 	virtual const std::string getColor() { return color_;  }
+
+	const std::vector<std::pair<int, int>> returnVectorMovementVectoriels() ;
+
 private:
 	std::shared_ptr<Square> square_;
 	int row_;
@@ -25,5 +28,5 @@ private:
 	std::string color_;
 
 	// cet attribut represente tout les mouvements vectoriels possible d'un roi.
-	static std::vector<std::pair<int, int>> vectorMovementVectoriels_;
+	//static std::vector<std::pair<int, int>> vectorMovementVectoriels_;
 };
