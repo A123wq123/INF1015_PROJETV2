@@ -1,7 +1,7 @@
 #ignore: 
 /.vs
 ProjetFinal/**
-!ProjetFinal/*.cpp
+!ProjetFinal/**.cpp
 !ProjetFinal/*.h
 !ProjetFinal/*.sln
 !ProjetFinal/bibliotheque_cours/*.cpp
