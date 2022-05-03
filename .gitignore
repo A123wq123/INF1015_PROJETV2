@@ -5,3 +5,4 @@ ProjetFinal/**
 !ProjetFinal/*.h
 !ProjetFinal/*.sln
 !ProjetFinal/bibliotheque_cours/**
+!ProjetFinal/bibliotheque_cours/*.cpp
