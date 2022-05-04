@@ -64,6 +64,23 @@ bool Echiquier::isKingInCheck(std::string colorOfKing) {
 	return false;
 }
 
+bool Echiquier::isKingInCheckAfterMove(std::string colorOfKing, std::shared_ptr<Square> currentPos, std::shared_ptr<Square> dest) {
+	std::shared_ptr<Piece> currentPosPiece = currentPos->getPiece();
+	std::shared_ptr<Piece> destPiece = dest->getPiece();
+	dest->addPiece(currentPos->getPiece());
+	currentPos->removePiece();
+	if (this->isKingInCheck(colorOfKing)) {
+		currentPos->addPiece(currentPosPiece);
+		dest->addPiece(destPiece);
+		return true;
+	}
+	else {
+		currentPos->addPiece(currentPosPiece);
+		dest->addPiece(destPiece);
+		return false;
+	}
+}
+
 // La méthode move piece est sujette a disparaître car on vas passer par la création d'un objet
 // move qui lui se charge de gèrer le move. 
 

@@ -24,6 +24,7 @@ std::vector<std::shared_ptr<Square>> Roi::checkPossibleMoves(std::unique_ptr<Ech
 		if ((0 <= destRow <= 7) && (0 <= destCollumn <= 7)) {
 			// s'assurer que l'on ne tente pas de manger une piece de la meme couleur. 
 			if (echiquier->getCase(destRow, destCollumn)->getPiece()->getColor() != color_) {
+				// Ajouter un test pour si board en echec. 
 				vectorPossibleMoves.push_back(echiquier->getCase(destRow, destCollumn));
 			}
 		}
