@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <set>
 #include "Piece.h"
 #include "Square.h"
 
@@ -22,8 +23,14 @@ public:
 
 	const int getNumberOfRows() { numberOfRows_ = 8; return numberOfRows_; }
 	const int getNumberOfCollumns() { numberOfCollumns_ = 8; return numberOfCollumns_; }
+	std::unique_ptr<Echiquier> getPtrEchiquier() { return std::unique_ptr<Echiquier>(this); }
+
+	std::shared_ptr<Square> findSquareKing(std::string color);
 
 	const std::shared_ptr<Square> getCase(int row, int collumn) { return vectorSquare_[row][collumn]; }
+
+	std::set<std::shared_ptr<Square>> getSetSquaresAttacked(std::string colorOfPieces);
+	bool isKingInCheck(std::string colorOfKing);
 	// faire une fonction getcase AVEC row et collonne valeur de retour case*
 	// might have to define des opperateur begin et end pour permettre l'ittération facile. 
 private:

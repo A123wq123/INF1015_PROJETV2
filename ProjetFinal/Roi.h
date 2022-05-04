@@ -18,6 +18,7 @@ public:
 
 	virtual void setCase(std::shared_ptr<Square> squarePtr) { square_ = squarePtr; }
 	virtual const std::string getColor() { return color_;  }
+	const std::shared_ptr<Square> getSquare() { return square_; }
 
 	const std::vector<std::pair<int, int>> returnVectorMovementVectoriels() ;
 

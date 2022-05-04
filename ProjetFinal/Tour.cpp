@@ -49,7 +49,7 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 		// might want to return true vus que c'est un déplacement de la case A vers elle même mais vas falloir voir avec le code. 
 	}
 
-	// check we are tried to eat a same collored piece. 
+	// check we are trying to eat a same collored piece. 
 	else if (squareDest->getPiece()->getColor() == color_) {
 		return false;
 	}
