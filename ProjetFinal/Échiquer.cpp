@@ -4,10 +4,10 @@
 Echiquier::Echiquier() : vectorSquare_() {
 	bool isWhite = false;
 	for (int row = 0; row < getNumberOfRows(); row++) {
-		!isWhite;           // Alterne le noir blanc à chaque ligne.
+		isWhite = !isWhite;           // Alterne le noir blanc à chaque ligne.
 		for (int collumn = 0; collumn < getNumberOfCollumns(); collumn++) {
-			vectorSquare_[row][collumn] = std::make_shared<Square>(Square(row, collumn, isWhite));
-			!isWhite;       // alterne le noir blanc à chaque colonne. 
+			vectorSquare_[row].emplace_back(std::make_shared<Square>(Square(row, collumn, isWhite)));
+			isWhite = !isWhite;       // alterne le noir blanc à chaque colonne. 
 		}
 	}
 }
