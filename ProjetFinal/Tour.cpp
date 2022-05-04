@@ -7,8 +7,14 @@
 static const int numberofRowOrCollumn = 8;
 Tour::Tour(std::shared_ptr<Square>& square, std::string color) : square_(square), row_(square->getCoordinates().first)
 , collomn_(square->getCoordinates().second), color_(color) {
-
+	if (color_ == "White") {
+		name_ = "WhiteTower";
+	}
+	else {
+		name_ = "BlackTower";
+	}
 }
+
 std::vector<std::shared_ptr<Square>> Tour::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
 	std::vector<std::shared_ptr<Square>> vectorPossibleMoves{};
 
@@ -46,10 +52,9 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 	// check if end pos is same as start.
 	if (square_ == squareDest) {
 		return false;
-		// might want to return true vus que c'est un déplacement de la case A vers elle même mais vas falloir voir avec le code. 
 	}
 
-	// check we are trying to eat a same collored piece. 
+	// check if we are trying to eat a same collored piece. 
 	else if (squareDest->getPiece()->getColor() == color_) {
 		return false;
 	}
@@ -65,7 +70,6 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 					return false;
 				}
 			}
-			return true;
 		}
 
 		else if (diff < 0) {
@@ -74,8 +78,13 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 					return false;
 				}
 			}
+		}
+
+		// check si le déplacement mets notre roi en echec. 
+		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest)) {
 			return true;
 		}
+		return false;
 	}
 
 	// Check if move is vectical.
@@ -89,7 +98,6 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 					return false;
 				}
 			}
-			return true;
 		}
 
 		else if (diff < 0) {
@@ -98,7 +106,12 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 					return false;
 				}
 			}
+		}
+
+		// check si le déplacement mets notre roi en echec. 
+		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest)) {
 			return true;
 		}
+		return false;
 	}
 }

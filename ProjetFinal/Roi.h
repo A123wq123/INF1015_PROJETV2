@@ -21,12 +21,14 @@ public:
 	const std::shared_ptr<Square> getSquare() { return square_; }
 
 	const std::vector<std::pair<int, int>> returnVectorMovementVectoriels() ;
+	const std::string getName() { return name_; }
 
 private:
 	std::shared_ptr<Square> square_;
 	int row_;
 	int collumn_;
 	std::string color_;
+	std::string name_;
 
 	// cet attribut represente tout les mouvements vectoriels possible d'un roi.
 	//static std::vector<std::pair<int, int>> vectorMovementVectoriels_;

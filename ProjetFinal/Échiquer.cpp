@@ -65,40 +65,27 @@ bool Echiquier::isKingInCheck(std::string colorOfKing) {
 }
 
 bool Echiquier::isKingInCheckAfterMove(std::string colorOfKing, std::shared_ptr<Square> currentPos, std::shared_ptr<Square> dest) {
+	// sauvegarder les positions originales. 
 	std::shared_ptr<Piece> currentPosPiece = currentPos->getPiece();
 	std::shared_ptr<Piece> destPiece = dest->getPiece();
+	// effectuer le mouvement.
 	dest->addPiece(currentPos->getPiece());
+	dest->getPiece()->setCase(dest);
 	currentPos->removePiece();
+	
+	// Tester si le roi est en echec. 
 	if (this->isKingInCheck(colorOfKing)) {
+		// annuler le mouvement. 
 		currentPos->addPiece(currentPosPiece);
+		currentPos->getPiece()->setCase(currentPos);
 		dest->addPiece(destPiece);
 		return true;
 	}
 	else {
+		// annuler le mouvement. 
 		currentPos->addPiece(currentPosPiece);
+		currentPos->getPiece()->setCase(currentPos);
 		dest->addPiece(destPiece);
 		return false;
 	}
 }
-
-// La méthode move piece est sujette a disparaître car on vas passer par la création d'un objet
-// move qui lui se charge de gèrer le move. 
-
-//void Echiquier::movePiece(std::shared_ptr<Square> squareOfPiece, std::shared_ptr<Square> squareToGo) {
-//	//std::shared_ptr<Piece> pieceToMove = caseOfPiece->getPiece();
-//	//caseToGo->addPiece(pieceToMove);
-//	//caseOfPiece->removePiece();
-//
-//	if (squareOfPiece->getPiece()->checkIfValidMove(squareToGo)) {
-//		std::shared_ptr<Piece> pieceToMove = squareOfPiece->getPiece();
-//		squareToGo->addPiece(pieceToMove);
-//		squareOfPiece->removePiece();
-//
-//		// probablement trouver le moyen d'envoyer un signal ici pour dire que le board à changer.
-//	}
-//
-//	else {
-//		// do nothing, probablement turn off des indicateurs visuels à faire ici. 
-//	}
-//
-//}

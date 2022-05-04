@@ -21,6 +21,7 @@ public:
 	virtual void setCase(std::shared_ptr<Square> squarePtr) = 0;
 
 	virtual const std::string getColor() = 0;
+	virtual const std::string getName() = 0;
 
 	// dependament de comment le code évolue il serait interessant de rajouter une methode virtuelle pure move(). 
 

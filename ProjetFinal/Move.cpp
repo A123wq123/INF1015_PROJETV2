@@ -13,5 +13,6 @@ bool Move::checkIfValidMove(std::unique_ptr<Echiquier>& echiquier) {
 void Move::executeMove(std::unique_ptr<Echiquier>& echiquier) {
 	// Cette méthode ne fait qu'executer le déplacement, TOUT test doit être fait AVANT l'exécution de cette méthode. 
 	endSquare_->addPiece(startSquare_->getPiece());
+	endSquare_->getPiece()->setCase(endSquare_);
 	startSquare_->removePiece();
 }

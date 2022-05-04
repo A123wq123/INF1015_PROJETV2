@@ -3,7 +3,12 @@
 
 Roi::Roi(std::shared_ptr<Square>& square, std::string color) : square_(square), row_(square->getCoordinates().first), 
 	collumn_(square->getCoordinates().second), color_(color) {
-	// Create vector of all possible vectorial moves. 
+	if (color_ == "White") {
+		name_ = "WhiteKing";
+	}
+	else {
+		name_ = "BlackKing";
+	}
 }
 
 const std::vector<std::pair<int, int>> Roi::returnVectorMovementVectoriels() {
@@ -25,7 +30,9 @@ std::vector<std::shared_ptr<Square>> Roi::checkPossibleMoves(std::unique_ptr<Ech
 			// s'assurer que l'on ne tente pas de manger une piece de la meme couleur. 
 			if (echiquier->getCase(destRow, destCollumn)->getPiece()->getColor() != color_) {
 				// Ajouter un test pour si board en echec. 
-				vectorPossibleMoves.push_back(echiquier->getCase(destRow, destCollumn));
+				if (false == echiquier->isKingInCheckAfterMove(color_, square_, echiquier->getCase(destRow, destCollumn))) {
+					vectorPossibleMoves.push_back(echiquier->getCase(destRow, destCollumn));
+				}
 			}
 		}
 	}
