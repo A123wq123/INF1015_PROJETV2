@@ -10,16 +10,17 @@
 class NullPiece : public Piece {
 public:
 	NullPiece(std::shared_ptr<Square> &square);
-	~NullPiece() = default;
+	~NullPiece() override = default;
 
-	virtual std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) override;
-	virtual bool checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier)override;
+	std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) override;
+	bool checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier) override;
 
 	//const std::vector<std::shared_ptr<Square>> getVectorPossibleMoves() { return vectorPossibleMoves_; }
 	//void clearVectorPossibleMoves() { vectorPossibleMoves_.clear(); }
 
-	virtual void setCase(std::shared_ptr<Square> squarePtr) { square_ = squarePtr; }
-	virtual const std::string getColor() { return color_; }
+	void setCase(std::shared_ptr<Square> squarePtr) override { square_ = squarePtr; }
+	const std::string getColor() override { return color_; }
+	const std::string getName() override { return name_; }
 
 private:
 	//std::vector<std::shared_ptr<Square>> vectorPossibleMoves_;
@@ -27,6 +28,7 @@ private:
 	int row_;
 	int collomn_;
 	std::string color_;
+	std::string name_;
 };
 
 
