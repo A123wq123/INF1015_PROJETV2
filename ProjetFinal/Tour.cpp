@@ -5,14 +5,8 @@
 //#pragma once
 
 static const int numberofRowOrCollumn = 8;
-Tour::Tour(std::shared_ptr<Square>& square, std::string color) : square_(square), row_(square->getCoordinates().first)
-, collomn_(square->getCoordinates().second), color_(color) {
-	if (color_ == "White") {
-		name_ = "WhiteTower";
-	}
-	else {
-		name_ = "BlackTower";
-	}
+Tour::Tour(Square* square, std::string color) : Piece(square,color, color + "Tour") {
+
 }
 
 std::vector<std::shared_ptr<Square>> Tour::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
@@ -50,7 +44,7 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 	int destCollumn = squareDest->getCoordinates().second;
 
 	// check if end pos is same as start.
-	if (square_ == squareDest) {
+	if (square_ == squareDest.get()) {
 		return false;
 	}
 
@@ -81,7 +75,7 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 		}
 
 		// check si le déplacement mets notre roi en echec. 
-		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest)) {
+		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest.get())) {
 			return true;
 		}
 		return false;
@@ -109,7 +103,7 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 		}
 
 		// check si le déplacement mets notre roi en echec. 
-		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest)) {
+		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest.get())) {
 			return true;
 		}
 		return false;

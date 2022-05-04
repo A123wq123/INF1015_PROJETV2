@@ -31,7 +31,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.2.1_msvc2019_64</QtInstall>
+    <QtInstall>5.15.2_msvc2019_64</QtInstall>
     <QtModules>core;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -111,37 +111,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="bibliotheque_cours\bibliotheque_cours.cpp" />
-    <ClCompile Include="bibliotheque_cours\verification_allocation.cpp" />
+    <ClCompile Include="bibliotheque_cours.cpp" />
+    <ClCompile Include="gtest-all.cc" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Roi.cpp" />
-    <ClCompile Include="cannonfield.cpp" />
     <ClCompile Include="lcdrange.cpp" />
     <ClCompile Include="Piece.h" />
     <ClCompile Include="NullPiece.cpp" />
+    <ClCompile Include="squareVue.cpp" />
+    <ClCompile Include="verification_allocation.cpp" />
     <ClCompile Include="Vue.cpp" />
     <ClCompile Include="Tour.cpp" />
     <ClCompile Include="Échiquer.cpp" />
-    <ClCompile Include="googletest\src\gtest-all.cc" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Fou.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\bibliotheque_cours.hpp" />
+    <ClInclude Include="..\include\CodeCoverage_bugfix.h" />
+    <ClInclude Include="..\include\debogage_memoire.hpp" />
+    <ClInclude Include="..\include\verification_allocation.hpp" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="Echiquier.h" />
     <ClInclude Include="Fou.h" />
     <QtMoc Include="Vue.h" />
     <ClInclude Include="lcdrange.h" />
-    <ClInclude Include="cannonfield.h" />
     <ClInclude Include="NullPiece.h" />
+    <QtMoc Include="squareVue.h" />
     <ClInclude Include="Tour.h" />
     <ClInclude Include="Roi.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="ChessGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

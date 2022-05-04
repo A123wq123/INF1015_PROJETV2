@@ -3,8 +3,8 @@
 
 Square::Square(int row, int colloumn, bool isWhite) : row_(row), colloumn_(colloumn), isWhite_(isWhite)
 {
-	std::shared_ptr<Square> square = std::shared_ptr<Square>(this);
-	piecePtr_ = std::make_shared<NullPiece>(NullPiece(square));
+	
+	piecePtr_ = std::make_shared<NullPiece>(NullPiece(this));
 }
 
 bool Square::isOccupied() {
@@ -17,11 +17,11 @@ bool Square::isOccupied() {
 }
 
 void Square::addPiece(std::shared_ptr<Piece> piecePtr) {
-	removePiece();
+	/*removePiece();*/
 	piecePtr_ = piecePtr;
 }
 
 void Square::removePiece() {
-	std::shared_ptr<Square> square = std::shared_ptr<Square>(this);
-	piecePtr_ = std::make_shared<NullPiece>(NullPiece(square));
+	
+	piecePtr_ = std::make_shared<NullPiece>(NullPiece(this));
 }

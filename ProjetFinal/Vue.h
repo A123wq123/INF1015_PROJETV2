@@ -6,6 +6,8 @@
 #include <QWidget>
 #include <Qpoint>
 #include <QMargins>
+#include "qdebug.h"
+#include "squareVue.h"
 
 // The header pour l'affichage Qt
 class Vue : public QMainWindow {
@@ -13,8 +15,8 @@ class Vue : public QMainWindow {
 public:
 	Vue(QWidget* parent = nullptr);
 	QGridLayout* boxLayout();
-	QPushButton* createSquare();
+	SquareVue* createSquare(int row, int collumn);
 private:
 	QPushButton* button_;
-
+	Echiquier echiquier_;
 };

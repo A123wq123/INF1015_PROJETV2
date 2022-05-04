@@ -1,14 +1,8 @@
 #pragma once
 #include "Roi.h"
 
-Roi::Roi(std::shared_ptr<Square>& square, std::string color) : square_(square), row_(square->getCoordinates().first), 
-	collumn_(square->getCoordinates().second), color_(color) {
-	if (color_ == "White") {
-		name_ = "WhiteKing";
-	}
-	else {
-		name_ = "BlackKing";
-	}
+Roi::Roi(Square* square, std::string color) : Piece(square,color, color + "King") {
+
 }
 
 const std::vector<std::pair<int, int>> Roi::returnVectorMovementVectoriels() {
@@ -22,15 +16,15 @@ std::vector<std::shared_ptr<Square>> Roi::checkPossibleMoves(std::unique_ptr<Ech
 
 	// Iterate over all possible vectorial moves 
 	for (auto&& mouvement : returnVectorMovementVectoriels()) {
-		int destRow = row_ + mouvement.first;
-		int destCollumn = collumn_ + mouvement.second;
+		int destRow = row() + mouvement.first;
+		int destCollumn = collumn() + mouvement.second;
 
 		// s'assurer que le deplacement de depasse pas l'echiquier. 
 		if ((0 <= destRow <= 7) && (0 <= destCollumn <= 7)) {
 			// s'assurer que l'on ne tente pas de manger une piece de la meme couleur. 
 			if (echiquier->getCase(destRow, destCollumn)->getPiece()->getColor() != color_) {
 				// Ajouter un test pour si board en echec. 
-				if (false == echiquier->isKingInCheckAfterMove(color_, square_, echiquier->getCase(destRow, destCollumn))) {
+				if (false == echiquier->isKingInCheckAfterMove(color_, square_, echiquier->getCase(destRow, destCollumn).get())) {
 					vectorPossibleMoves.push_back(echiquier->getCase(destRow, destCollumn));
 				}
 			}

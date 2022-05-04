@@ -9,7 +9,7 @@
 
 class NullPiece : public Piece {
 public:
-	NullPiece(std::shared_ptr<Square> &square);
+	NullPiece(Square* square);
 	~NullPiece() override = default;
 
 	std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) override;
@@ -18,17 +18,8 @@ public:
 	//const std::vector<std::shared_ptr<Square>> getVectorPossibleMoves() { return vectorPossibleMoves_; }
 	//void clearVectorPossibleMoves() { vectorPossibleMoves_.clear(); }
 
-	void setCase(std::shared_ptr<Square> squarePtr) override { square_ = squarePtr; }
-	const std::string getColor() override { return color_; }
-	const std::string getName() override { return name_; }
 
-private:
-	//std::vector<std::shared_ptr<Square>> vectorPossibleMoves_;
-	std::shared_ptr<Square> square_;
-	int row_;
-	int collomn_;
-	std::string color_;
-	std::string name_;
+
 };
 
 

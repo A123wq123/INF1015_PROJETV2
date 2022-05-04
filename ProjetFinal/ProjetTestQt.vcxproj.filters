@@ -25,15 +25,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bibliotheque_cours\bibliotheque_cours.cpp">
-      <Filter>Sources Bibliotheques</Filter>
-    </ClCompile>
-    <ClCompile Include="bibliotheque_cours\verification_allocation.cpp">
-      <Filter>Sources Bibliotheques</Filter>
-    </ClCompile>
-    <ClCompile Include="googletest\src\gtest-all.cc">
-      <Filter>Sources Bibliotheques</Filter>
-    </ClCompile>
     <ClCompile Include="Échiquer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -58,9 +49,6 @@
     <ClCompile Include="Vue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cannonfield.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lcdrange.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -73,9 +61,24 @@
     <ClCompile Include="Move.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="squareVue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bibliotheque_cours.cpp">
+      <Filter>Sources Bibliotheques</Filter>
+    </ClCompile>
+    <ClCompile Include="verification_allocation.cpp">
+      <Filter>Sources Bibliotheques</Filter>
+    </ClCompile>
+    <ClCompile Include="gtest-all.cc">
+      <Filter>Sources Bibliotheques</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Vue.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="squareVue.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -104,14 +107,20 @@
     <ClInclude Include="Move.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChessGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cannonfield.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lcdrange.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CodeCoverage_bugfix.h">
+      <Filter>Sources Bibliotheques</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\debogage_memoire.hpp">
+      <Filter>Sources Bibliotheques</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\verification_allocation.hpp">
+      <Filter>Sources Bibliotheques</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\bibliotheque_cours.hpp">
+      <Filter>Sources Bibliotheques</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
 #include "NullPiece.h"
 
-NullPiece::NullPiece(std::shared_ptr<Square>& square) : Piece(), square_(square), row_(square->getCoordinates().first) 
-, collomn_(square->getCoordinates().second), color_("Null"), name_("") {
+NullPiece::NullPiece(Square* square) : Piece(square,"","") {
 
 }
 

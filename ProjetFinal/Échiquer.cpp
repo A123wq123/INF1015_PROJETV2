@@ -3,8 +3,10 @@
 
 Echiquier::Echiquier() : vectorSquare_() {
 	bool isWhite = false;
+	
 	for (int row = 0; row < getNumberOfRows(); row++) {
-		isWhite = !isWhite;           // Alterne le noir blanc à chaque ligne.
+		vectorSquare_.emplace_back(std::vector<std::shared_ptr<Square>>());
+		isWhite  = !isWhite;           // Alterne le noir blanc à chaque ligne.
 		for (int collumn = 0; collumn < getNumberOfCollumns(); collumn++) {
 			vectorSquare_[row].emplace_back(std::make_shared<Square>(Square(row, collumn, isWhite)));
 			isWhite = !isWhite;       // alterne le noir blanc à chaque colonne. 
@@ -64,7 +66,7 @@ bool Echiquier::isKingInCheck(std::string colorOfKing) {
 	return false;
 }
 
-bool Echiquier::isKingInCheckAfterMove(std::string colorOfKing, std::shared_ptr<Square> currentPos, std::shared_ptr<Square> dest) {
+bool Echiquier::isKingInCheckAfterMove(std::string colorOfKing, Square* currentPos, Square* dest) {
 	// sauvegarder les positions originales. 
 	std::shared_ptr<Piece> currentPosPiece = currentPos->getPiece();
 	std::shared_ptr<Piece> destPiece = dest->getPiece();
