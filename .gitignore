@@ -4,3 +4,5 @@ ProjetFinal/**
 !ProjetFinal/*.cpp
 !ProjetFinal/*.h
 !ProjetFinal/*.sln
+!ProjetFinal/*.vcxproj
+!ProjetFinal/*.vcxproj.filters
