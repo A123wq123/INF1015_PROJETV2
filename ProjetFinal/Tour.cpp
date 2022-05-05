@@ -11,28 +11,16 @@ Tour::Tour(Square* square, std::string color) : Piece(square,color, color + "Tou
 
 std::vector<std::shared_ptr<Square>> Tour::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
 	std::vector<std::shared_ptr<Square>> vectorPossibleMoves{};
-
-	// regarde pour les déplacements verticaux 
-	for (int counter = 0; counter < numberofRowOrCollumn; counter++)
-	{
-		std::shared_ptr<Square> squareBeingChecked = echiquier->getCase(square_->getCoordinates().first, counter);
-		if (checkIfValidMove(squareBeingChecked, echiquier))
-		{
-			vectorPossibleMoves.push_back(squareBeingChecked);
-		}
-
-	}
-
-	// regarde pour les déplacements horizontaux
-	for (int counter = 0; counter < numberofRowOrCollumn; counter++)
-	{
-		std::shared_ptr<Square> squareBeingChecked = echiquier->getCase(counter, square_->getCoordinates().second);
-		if (checkIfValidMove(squareBeingChecked, echiquier))
-		{
-			vectorPossibleMoves.push_back(squareBeingChecked);
-
+	
+	// itterate on all squares: 
+	for (int row = 0; row < echiquier->getNumberOfRows(); row++) {
+		for (int collumn = 0; collumn < echiquier->getNumberOfCollumns(); collumn++) {
+			if (this->checkIfValidMove(echiquier->getCase(row, collumn), echiquier)) {
+				vectorPossibleMoves.push_back(echiquier->getCase(row, collumn));
+			}
 		}
 	}
+
 	return vectorPossibleMoves;
 }
 
@@ -44,14 +32,13 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 	int destCollumn = squareDest->getCoordinates().second;
 
 	// check if end pos is same as start.
-	if (square_ == squareDest.get()) {
-		return false;
-	}
+	if (square_ == squareDest.get()) { return false; }
 
 	// check if we are trying to eat a same collored piece. 
-	else if (squareDest->getPiece()->getColor() == color_) {
-		return false;
-	}
+	else if (squareDest->getPiece()->getColor() == color_) { return false; }
+
+	// check if move is linear (not diagonal or like a kight).
+	else if (false == this->checkIfMoveLinear(squareDest, echiquier)) { return false; }
 
 	// check if move is horizontal
 	else if (currentRow == destRow) {
@@ -101,11 +88,17 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 				}
 			}
 		}
-
-		// check si le déplacement mets notre roi en echec. 
-		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest.get())) {
-			return true;
-		}
-		return false;
 	}
+	// check si le déplacement mets notre roi en echec. 
+	if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest.get())) {
+		return true;
+	}
+	return false;
+}
+
+bool Tour::checkIfMoveLinear(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier) {
+	if ((this->row() == caseToGo->getCoordinates().first) || (this->collumn() == caseToGo->getCoordinates().second)) {
+		return true;
+	}
+	return false;
 }

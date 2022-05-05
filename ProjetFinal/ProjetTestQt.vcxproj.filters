@@ -70,7 +70,7 @@
     <ClCompile Include="verification_allocation.cpp">
       <Filter>Sources Bibliotheques</Filter>
     </ClCompile>
-    <ClCompile Include="gtest-all.cc">
+    <ClCompile Include="googletest\src\gtest-all.cc">
       <Filter>Sources Bibliotheques</Filter>
     </ClCompile>
   </ItemGroup>

@@ -8,4 +8,5 @@ public:
 	~Tour() override = default;
 	std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) override;
 	bool checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier) override;
+	bool checkIfMoveLinear(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier);
 };
