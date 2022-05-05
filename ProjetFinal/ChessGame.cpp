@@ -32,7 +32,7 @@ void Chess::ChessGame::determineNextStates() {
 		// End the game? Yet to figure out how.
 	}
 
-	case GameState::BlackInCheckMate:
+	case GameState::BlackInCheckmate:
 	{
 		// End the game? Yet to figure out how.
 	}
