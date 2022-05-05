@@ -56,7 +56,7 @@ bool Echiquier::isKingInCheck(std::string colorOfKing) {
 	// obtenir la couleur des pieces enemies. 
 	std::shared_ptr<Square> squareKingPtr = this->findSquareKing(colorOfKing);
 	std::string colorOfEnemies;
-	colorOfKing == "white" ? colorOfEnemies = "black" : colorOfEnemies = "white";
+	colorOfKing == "White" ? colorOfEnemies = "Black" : colorOfEnemies = "White";
 	std::set<std::shared_ptr<Square>> setOfSquaresAttacked = this->getSetSquaresAttacked(colorOfEnemies);
 	for (auto&& squarePtr : setOfSquaresAttacked) {
 		if (squarePtr == squareKingPtr) {
@@ -90,4 +90,21 @@ bool Echiquier::isKingInCheckAfterMove(std::string colorOfKing, Square* currentP
 		dest->addPiece(destPiece);
 		return false;
 	}
+}
+
+bool Echiquier::isKingInCheckMate(std::string colorOfKing) {
+	// get color of enemies.
+	std::string colorOfEnemies;
+	colorOfKing == "White" ? colorOfEnemies = "Black" : colorOfEnemies = "White";
+
+	// checks if king is even in check. 
+	if (false == this->isKingInCheck(colorOfKing)) {
+		return false;
+	}
+
+	// Altho the name of this method may be confusing, it gives us all the moves the pieces of a color can do.
+	if (this->getSetSquaresAttacked(colorOfKing).empty()) {
+		return true;
+	}
+	return false;
 }

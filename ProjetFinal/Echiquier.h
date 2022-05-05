@@ -32,6 +32,7 @@ public:
 	std::set<std::shared_ptr<Square>> getSetSquaresAttacked(std::string colorOfPieces);
 	bool isKingInCheck(std::string colorOfKing);
 	bool isKingInCheckAfterMove(std::string colorOfKing, Square* currentPos, Square* dest);
+	bool isKingInCheckMate(std::string colorOfKing);
 	// faire une fonction getcase AVEC row et collonne valeur de retour case*
 	// might have to define des opperateur begin et end pour permettre l'ittération facile. 
 private:
