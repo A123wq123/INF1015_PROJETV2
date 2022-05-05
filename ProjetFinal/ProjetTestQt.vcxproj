@@ -117,7 +117,7 @@
     <ClCompile Include="ChessGame.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="Piece.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Roi.cpp" />
     <ClCompile Include="lcdrange.cpp" />
     <ClCompile Include="Piece.h" />
@@ -136,6 +136,7 @@
     <ClInclude Include="..\include\debogage_memoire.hpp" />
     <ClInclude Include="..\include\verification_allocation.hpp" />
     <ClInclude Include="ChessGame.h" />
+    <ClInclude Include="Debugg.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="Echiquier.h" />

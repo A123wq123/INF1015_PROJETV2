@@ -24,6 +24,7 @@ namespace Chess {
 		void determineNextStates();
 		const PlayerTurn getPlayerTurn() { return playerTurn_; }
 		const GameState getGameState() { return gameState_; }
+		Echiquier* getEchiquier() { return echiquer_; }
 
 	private:
 		Echiquier* echiquer_;

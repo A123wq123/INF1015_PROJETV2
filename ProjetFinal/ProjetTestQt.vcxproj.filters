@@ -37,7 +37,7 @@
     <ClCompile Include="Piece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="Debug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Roi.cpp">
@@ -126,6 +126,9 @@
       <Filter>Sources Bibliotheques</Filter>
     </ClInclude>
     <ClInclude Include="ChessGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
