@@ -15,8 +15,8 @@ public:
 	virtual ~Piece() = default;
 	//virtual std::shared_ptr<Piece> copy(const std::shared_ptr<Piece> piece) = 0;
 	//virtual void movePiece(std::shared_ptr<Case> squareTogo);          // Pas sur qu'on vas garder ca.
-	virtual std::vector<Square*> checkPossibleMoves(Echiquier* const echiquier) = 0;
-	virtual bool checkIfValidMove(Square* squareToGo, Echiquier* const echiquier) = 0;
+	virtual std::vector<Square*> checkPossibleMoves(Echiquier* const echiquier, bool ennableCheckIfKing) = 0;
+	virtual bool checkIfValidMove(Square* squareToGo, Echiquier* const echiquier, bool ennableCheckIfKing) = 0;
 	// Hesite a passer a une classe move pour permettre la sauvegarde des positions. 
 
 	virtual void setCase(Square* squarePtr) {

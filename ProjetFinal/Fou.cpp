@@ -11,12 +11,12 @@ Fou::Fou(Square* square, std::string color) : Piece(square, color, color + "Fou"
 //	this->setCase(nullptr);
 //}
 
-std::vector<Square*> Fou::checkPossibleMoves(Echiquier* const echiquier) {
+std::vector<Square*> Fou::checkPossibleMoves(Echiquier* const echiquier, bool ennableCheckIfKing) {
 	std::vector<Square*> vectorPossibleMoves{};
 
 	for (int row = 0; row < echiquier->getNumberOfRows(); row++) {
 		for (int collumn = 0; collumn < echiquier->getNumberOfCollumns(); collumn++) {
-			if (this->checkIfValidMove(echiquier->getCase(row, collumn), echiquier)) {
+			if (this->checkIfValidMove(echiquier->getCase(row, collumn), echiquier, ennableCheckIfKing)) {
 				vectorPossibleMoves.push_back(echiquier->getCase(row, collumn));
 			}
 		}
@@ -24,7 +24,7 @@ std::vector<Square*> Fou::checkPossibleMoves(Echiquier* const echiquier) {
 	return vectorPossibleMoves;
 }
 
-bool Fou::checkIfValidMove(Square* caseToGo, Echiquier* const echiquier) {
+bool Fou::checkIfValidMove(Square* caseToGo, Echiquier* const echiquier, bool ennableCheckIfKing) {
 	// check if dest is same as start. 
 	if (caseToGo == square_) { return false; }
 
@@ -84,10 +84,10 @@ bool Fou::checkIfValidMove(Square* caseToGo, Echiquier* const echiquier) {
 	}
 
 	// check if own king in check after move
-	if (echiquier->isKingInCheckAfterMove(color_, square_, caseToGo)) {
-		return false;
+	if (!ennableCheckIfKing) {
+		return true;
 	}
-	return true; 
+	return !(echiquier->isKingInCheckAfterMove(color_, square_, caseToGo));
 }
 
 bool Fou::checkIfMoveDIagonal(Square* caseToGo, Echiquier* const echiquier) {

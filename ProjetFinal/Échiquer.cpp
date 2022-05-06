@@ -1,4 +1,5 @@
 ﻿#include "Roi.h"
+#include "NullPiece.h"
 #include "Echiquier.h"
 
 Echiquier::Echiquier() : vectorSquare_() {
@@ -40,7 +41,7 @@ std::set<Square*> Echiquier::getSetSquaresAttacked(std::string colorOfPieces) {
 			auto& piece = vectorSquare_[row][collumn]->getPiece();
 			// determine si la piece est de la bonne couleur. 
 			if (piece->getColor() == colorOfPieces) {
-				std::vector<Square*> vectorOfPossibleMoves = piece->checkPossibleMoves(this);
+				std::vector<Square*> vectorOfPossibleMoves = piece->checkPossibleMoves(this, false);
 				// ajoute les mouvements au set (evite les duplicats).
 				for (auto&& squarePtr : vectorOfPossibleMoves) {
 					setOfSquaresAttacked.insert(squarePtr);
@@ -73,6 +74,7 @@ bool Echiquier::isKingInCheckAfterMove(std::string colorOfKing, Square* currentP
 	dest->addPiece(currentPos->getPiece());
 	dest->getPiece()->setCase(dest);
 	currentPos->removePiece();
+
 	
 	// Tester si le roi est en echec. 
 	if (this->isKingInCheck(colorOfKing)) {

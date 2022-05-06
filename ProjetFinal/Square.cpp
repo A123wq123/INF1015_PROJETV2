@@ -22,6 +22,5 @@ void Square::addPiece(std::shared_ptr<Piece> piecePtr) {
 }
 
 void Square::removePiece() {
-	
 	piecePtr_ = std::make_shared<NullPiece>(this);
 }

@@ -13,8 +13,8 @@ public:
 	Roi(Square* square, std::string color);
 	~Roi() override = default;
 	//Roi(const Roi& roi);
-	std::vector<Square*> checkPossibleMoves(Echiquier* const echiquier) override;
-	bool checkIfValidMove(Square* squareToGo, Echiquier* const echiquier) override;
+	std::vector<Square*> checkPossibleMoves(Echiquier* const echiquier, bool ennableCheckIfKing) override;
+	bool checkIfValidMove(Square* squareToGo, Echiquier* const echiquier, bool ennableCheckIfKing) override;
 	const Square* getSquare() { return square_; }
 	std::vector<Square*> returnVectorMovements(Echiquier* const echiquier);
 	

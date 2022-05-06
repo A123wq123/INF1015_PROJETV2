@@ -23,23 +23,25 @@ std::vector<Square*> Roi::returnVectorMovements(Echiquier* const echiquier) {
 		int destCollumn = collumn() + mouvement.second;
 
 		// s'assurer que le deplacement de depasse pas l'echiquier. 
-		if ((0 <= destRow <= 7) && (0 <= destCollumn <= 7)) {
-			// check if trying to eat same collored piece. 
-			if (echiquier->getCase(destRow, destCollumn)->getPiece()->getColor() != color_) {
-				vectorSquares.push_back(echiquier->getCase(destRow, destCollumn));
+		if ((0 <= destRow) && (destRow <= 7)) {
+			if ((0 <= destCollumn) && (destCollumn <= 7)) {
+				// check if trying to eat same collored piece. 
+				if (echiquier->getCase(destRow, destCollumn)->getPiece()->getColor() != color_) {
+					vectorSquares.push_back(echiquier->getCase(destRow, destCollumn));
+				}
 			}
 		}
 	}
 	return vectorSquares;
 }
 
-std::vector<Square*> Roi::checkPossibleMoves(Echiquier* const echiquier) {
+std::vector<Square*> Roi::checkPossibleMoves(Echiquier* const echiquier, bool ennableCheckIfKing) {
 	std::vector<Square*> vectorPossibleMoves{};
 
 	// Iterate over all squares.
 	for (int row = 0; row < echiquier->getNumberOfRows(); row++) {
 		for (int collumn = 0; collumn < echiquier->getNumberOfCollumns(); collumn++) {
-			if (this->checkIfValidMove(echiquier->getCase(row, collumn), echiquier)) {
+			if (this->checkIfValidMove(echiquier->getCase(row, collumn), echiquier, ennableCheckIfKing)) {
 				vectorPossibleMoves.push_back(echiquier->getCase(row, collumn));
 			}
 		}
@@ -49,7 +51,7 @@ std::vector<Square*> Roi::checkPossibleMoves(Echiquier* const echiquier) {
 
 }
 
-bool Roi::checkIfValidMove(Square* squareToGo, Echiquier* const echiquier) {
+bool Roi::checkIfValidMove(Square* squareToGo, Echiquier* const echiquier, bool ennableCheckIfKing) {
 	// check if dest is same as current.
 	if (squareToGo == square_) { return false; }
 
@@ -64,6 +66,9 @@ bool Roi::checkIfValidMove(Square* squareToGo, Echiquier* const echiquier) {
 		// check if dest is in the squares around the king. 
 		if (squareToGo == square) {
 			// check if king in check after move.
+			if (!ennableCheckIfKing) {
+				return true;
+			}
 			if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareToGo)) {
 				return true;
 			}

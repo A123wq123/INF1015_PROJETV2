@@ -3,6 +3,7 @@
 #include <memory>
 #include "Echiquier.h"
 #include "Square.h"
+#include <iostream>
 
 // Ce header sert à définir la classe qui est en charge de gèrer un mouvement de piece sur le board. 
 

@@ -36,7 +36,7 @@ class Debugg {
 public:
 	Debugg(Chess::ChessGame chessGame) : chessGame_(chessGame) {}
 	~Debugg() = default;
-	void printBoardState();
+	void printBoardState(std::string nameOftest);
 	void lancerSerieTests();
 private:
 	Chess::ChessGame chessGame_; // Might be no need for a pointer here.

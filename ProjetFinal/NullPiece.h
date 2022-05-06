@@ -12,8 +12,8 @@ public:
 	NullPiece(Square* square);
 	~NullPiece() override = default;
 
-	std::vector<Square*> checkPossibleMoves(Echiquier* const echiquier) override;
-	bool checkIfValidMove(Square* caseToGo, Echiquier* const echiquier) override;
+	std::vector<Square*> checkPossibleMoves(Echiquier* const echiquier, bool ennableCheckIfKing) override;
+	bool checkIfValidMove(Square* caseToGo, Echiquier* const echiquier, bool ennableCheckIfKing) override;
 
 	//const std::vector<std::shared_ptr<Square>> getVectorPossibleMoves() { return vectorPossibleMoves_; }
 	//void clearVectorPossibleMoves() { vectorPossibleMoves_.clear(); }

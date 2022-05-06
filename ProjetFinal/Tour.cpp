@@ -9,13 +9,13 @@ Tour::Tour(Square* square, std::string color) : Piece(square,color, color + "Tou
 
 }
 
-std::vector<Square*> Tour::checkPossibleMoves(Echiquier* const echiquier) {
+std::vector<Square*> Tour::checkPossibleMoves(Echiquier* const echiquier, bool ennableCheckIfKing) {
 	std::vector<Square*> vectorPossibleMoves{};
 	
 	// itterate on all squares: 
 	for (int row = 0; row < echiquier->getNumberOfRows(); row++) {
 		for (int collumn = 0; collumn < echiquier->getNumberOfCollumns(); collumn++) {
-			if (this->checkIfValidMove(echiquier->getCase(row, collumn), echiquier)) {
+			if (this->checkIfValidMove(echiquier->getCase(row, collumn), echiquier, ennableCheckIfKing)) {
 				vectorPossibleMoves.push_back(echiquier->getCase(row, collumn));
 			}
 		}
@@ -25,7 +25,7 @@ std::vector<Square*> Tour::checkPossibleMoves(Echiquier* const echiquier) {
 }
 
 
-bool Tour::checkIfValidMove(Square* squareDest, Echiquier* const echiquier) {
+bool Tour::checkIfValidMove(Square* squareDest, Echiquier* const echiquier, bool ennableCheckIfKing) {
 	int currentRow = square_->getCoordinates().first;
 	int destRow = squareDest->getCoordinates().first;
 	int currentCollumn = square_->getCoordinates().second;
@@ -60,12 +60,6 @@ bool Tour::checkIfValidMove(Square* squareDest, Echiquier* const echiquier) {
 				}
 			}
 		}
-
-		// check si le déplacement mets notre roi en echec. 
-		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest)) {
-			return true;
-		}
-		return false;
 	}
 
 	// Check if move is vectical.
@@ -90,10 +84,15 @@ bool Tour::checkIfValidMove(Square* squareDest, Echiquier* const echiquier) {
 		}
 	}
 	// check si le déplacement mets notre roi en echec. 
-	if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest)) {
+	if (ennableCheckIfKing) {
+		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest)) {
+			return true;
+		}
+		return false;
+	}
+	else {
 		return true;
 	}
-	return false;
 }
 
 bool Tour::checkIfMoveLinear(Square* caseToGo, Echiquier* const echiquier) {
