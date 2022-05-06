@@ -40,3 +40,25 @@ void Chess::ChessGame::determineNextStates() {
 	}
 	}
 }
+
+std::unique_ptr<Move> Chess::ChessGame::createMoveObject(Square* startSquare) {
+	std::string colorOfPiece = startSquare->getPiece()->getColor();
+	if (this->getPlayerTurn() == PlayerTurn::White) {
+		if (colorOfPiece == "White") {
+			return std::make_unique<Move>(startSquare);
+		}
+		else {
+			std::cout << "Not your turn!" << std::endl;
+			return nullptr;
+		}
+	}
+	else if (this->getPlayerTurn() == PlayerTurn::Black) {
+		if (colorOfPiece == "Black") {
+			return std::make_unique<Move>(startSquare);
+		}
+		else {
+			std::cout << "Not your turn!" << std::endl;
+			return nullptr;
+		}
+	}
+}

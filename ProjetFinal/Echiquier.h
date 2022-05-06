@@ -22,7 +22,7 @@ public:
 
 	Square* findSquareKing(std::string color);
 
-	Square* getCase(int row, int collumn) { return vectorSquare_[row][collumn].get(); }
+	Square* getCase(int row, int collumn);
 
 	std::set<Square*> getSetSquaresAttacked(std::string colorOfPieces);
 	bool isKingInCheck(std::string colorOfKing);

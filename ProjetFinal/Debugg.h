@@ -13,9 +13,9 @@ public:
 };
 
 // Error associated with square not found. 
-class SquareNotFound : public std::runtime_error {
+class SquareNotFound : public std::logic_error {
 public:
-	using runtime_error::runtime_error;
+	using logic_error::logic_error;
 };
 
 // Error associated with piece not found
@@ -38,6 +38,7 @@ public:
 	~Debugg() = default;
 	void printBoardState(std::string nameOftest);
 	void lancerSerieTests();
+	void resetBoard();
 private:
 	Chess::ChessGame chessGame_; // Might be no need for a pointer here.
 };

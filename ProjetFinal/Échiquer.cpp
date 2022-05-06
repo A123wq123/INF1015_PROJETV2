@@ -1,6 +1,7 @@
 ﻿#include "Roi.h"
 #include "NullPiece.h"
 #include "Echiquier.h"
+#include "Debugg.h"
 
 Echiquier::Echiquier() : vectorSquare_() {
 	bool isWhite = false;
@@ -31,6 +32,15 @@ Square* Echiquier::findSquareKing(std::string color) {
 		}
 	}
 	return nullptr;
+}
+
+Square* Echiquier::getCase(int row, int collumn) { 
+	if ((0 <= row) && (row <= 7)) {
+		if ((0 <= collumn) && (collumn <= 7)) {
+			return vectorSquare_[row][collumn].get();
+		}
+	}
+	throw SquareNotFound("Could not find the scare as the parameters are incorect");
 }
 
 std::set<Square*> Echiquier::getSetSquaresAttacked(std::string colorOfPieces) {
