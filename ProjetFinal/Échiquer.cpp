@@ -40,7 +40,7 @@ Square* Echiquier::getCase(int row, int collumn) {
 			return vectorSquare_[row][collumn].get();
 		}
 	}
-	throw SquareNotFound("Could not find the scare as the parameters are incorect");
+	throw SquareNotFound("Could not find the square as the parameters are incorect");
 }
 
 std::set<Square*> Echiquier::getSetSquaresAttacked(std::string colorOfPieces) {
