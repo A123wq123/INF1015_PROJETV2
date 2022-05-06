@@ -19,7 +19,7 @@ namespace Chess {
 
 	class ChessGame {
 	public:
-		ChessGame(std::unique_ptr<Echiquier>& echiquier);
+		ChessGame(Echiquier* const echiquier);
 		~ChessGame() = default; 
 		void determineNextStates();
 		const PlayerTurn getPlayerTurn() { return playerTurn_; }

@@ -7,44 +7,44 @@
 #include <QWidget>
 #include "Vue.h"
 
+//Remove these later.
+#include "Echiquier.h"
+#include "Roi.h"
+#include "ChessGame.h"
+#include "Debugg.h"
+
 //class MyWidget : public QWidget
 //{
 //public:
     //MyWidget(QWidget* parent = 0);
 //};
 
-//MyWidget::MyWidget(QWidget* parent)
-//    : QWidget(parent)
-//{
-//    QPushButton* quit = new QPushButton(tr("Quit"));
-//    quit->setFont(QFont("Times", 18, QFont::Bold));
-//
-//    QLCDNumber* lcd = new QLCDNumber(2);
-//    lcd->setSegmentStyle(QLCDNumber::Filled);
-//
-//    QSlider* slider = new QSlider(Qt::Horizontal);
-//    slider->setRange(0, 99);
-//    slider->setValue(0);
-//
-//
-//    connect(slider, SIGNAL(valueChanged(int)),
-//        lcd, SLOT(display(int)));
-//
-//    QVBoxLayout* layout = new QVBoxLayout;
-//    layout->addWidget(quit);
-//    layout->addWidget(lcd);
-//    layout->addWidget(slider);
-//    setLayout(layout);
-//}
+std::unique_ptr<Echiquier> createBasicEchiquier() {
+    std::unique_ptr<Echiquier> echiquier = std::make_unique<Echiquier>();
+    echiquier->getCase(2, 2)->addPiece(std::make_shared<Roi>(echiquier->getCase(2, 2), "White"));
+    return std::move(echiquier);
+}
+
+Chess::ChessGame createBasicChessGame(Echiquier* const echiquierPtr) {
+    return Chess::ChessGame(echiquierPtr);
+}
+
+Debugg createbasicDebuggObject(Chess::ChessGame chessGame) {
+    return Debugg(chessGame);
+}
 
 int main(int argc, char* argv[])
 {
-
-        QApplication app(argc, argv);
+    // uncoment the following lines when done with tests.
+        /*QApplication app(argc, argv);
         Vue widget;
         widget.show();
-        return app.exec();
+        return app.exec();*/
     
+    std::unique_ptr<Echiquier> echiquierPtr = createBasicEchiquier();
+    Chess::ChessGame chessGame = createBasicChessGame(echiquierPtr.get());
+    Debugg debuggObject = createbasicDebuggObject(chessGame);
 
-    // FUCK YOU
+    //debuggObject.printBoardState();
+    debuggObject.lancerSerieTests();
 }

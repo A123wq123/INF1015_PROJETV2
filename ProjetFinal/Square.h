@@ -8,7 +8,7 @@ class Piece;
 class Square {
 public:
 	Square(int row, int colloumn, bool isWhite);
-	~Square() = default;
+	virtual ~Square() = default;
 
 	const std::shared_ptr<Piece> getPiece() { return piecePtr_; }
 	bool isOccupied();

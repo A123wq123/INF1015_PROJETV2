@@ -11,14 +11,14 @@ public:
 	Move(Square* startSquare) : startSquare_(startSquare) {}
 	~Move() = default;
 
-	std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier);
-	bool checkIfValidMove(std::unique_ptr<Echiquier>& echiquier);
+	std::vector<Square*> checkPossibleMoves(Echiquier* const echiquier);
+	bool checkIfValidMove(Echiquier* const echiquier);
 
 
-	void setEndSquare(std::shared_ptr<Square> square) { endSquare_ = square.get(); }
+	void setEndSquare(Square* square) { endSquare_ = square; }
 	const std::shared_ptr<Piece> getPiece() { return startSquare_->getPiece(); }
 
-	void executeMove(std::unique_ptr<Echiquier>& echiquier); 
+	void executeMove(Echiquier* const echiquier); 
 
 private:
 	//std::vector<std::shared_ptr<Square>> vecteurSquareKingInCheck;

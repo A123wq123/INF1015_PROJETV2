@@ -6,7 +6,9 @@ class Fou : Piece {
 public:
 	Fou(Square* square, std::string color);
 	~Fou() override = default;
-	std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier>&echiquier) override;
-	bool checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>&echiquier) override;
-	bool checkIfMoveDIagonal(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier);
+	/*std::shared_ptr<Piece> copy(const std::shared_ptr<Piece> piece) override;
+	Fou(const Fou& fou);*/
+	std::vector<Square*> checkPossibleMoves(Echiquier* const echiquier) override;
+	bool checkIfValidMove(Square* caseToGo, Echiquier* const echiquier) override;
+	bool checkIfMoveDIagonal(Square* caseToGo, Echiquier* const echiquier);
 };

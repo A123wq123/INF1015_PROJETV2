@@ -29,7 +29,7 @@ Vue::Vue(QWidget* parent): QMainWindow(parent), echiquier_() {
 }
 
 SquareVue* Vue::createSquare(int row, int collumn) {
-    auto squareVue = new SquareVue(echiquier_.getCase(row,collumn).get());
+    auto squareVue = new SquareVue(echiquier_.getCase(row,collumn));
     squareVue->setFixedSize(QSize(150, 150));
     
     if (color % 2 == 0) {
@@ -64,8 +64,8 @@ SquareVue* Vue::createSquare(int row, int collumn) {
     return squareVue;
 }
 QGridLayout* Vue::boxLayout() {
-    echiquier_.getCase(2, 2)->addPiece(make_shared<Roi>(echiquier_.getCase(2, 2).get(), "White"));
-    echiquier_.getCase(2, 3)->addPiece(make_shared<Tour>(echiquier_.getCase(2, 3).get(), "White"));
+    echiquier_.getCase(2, 2)->addPiece(make_shared<Roi>(echiquier_.getCase(2, 2), "White"));
+    echiquier_.getCase(2, 3)->addPiece(make_shared<Tour>(echiquier_.getCase(2, 3), "White"));
     QGridLayout* chessGrid = new QGridLayout;
     for (int row = 0; row < numberRows; ++row) {
         for (int column = 0; column < numberCollums; ++column) {

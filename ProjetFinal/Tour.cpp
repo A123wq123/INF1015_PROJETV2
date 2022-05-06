@@ -9,8 +9,8 @@ Tour::Tour(Square* square, std::string color) : Piece(square,color, color + "Tou
 
 }
 
-std::vector<std::shared_ptr<Square>> Tour::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
-	std::vector<std::shared_ptr<Square>> vectorPossibleMoves{};
+std::vector<Square*> Tour::checkPossibleMoves(Echiquier* const echiquier) {
+	std::vector<Square*> vectorPossibleMoves{};
 	
 	// itterate on all squares: 
 	for (int row = 0; row < echiquier->getNumberOfRows(); row++) {
@@ -25,14 +25,14 @@ std::vector<std::shared_ptr<Square>> Tour::checkPossibleMoves(std::unique_ptr<Ec
 }
 
 
-bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<Echiquier>& echiquier) {
+bool Tour::checkIfValidMove(Square* squareDest, Echiquier* const echiquier) {
 	int currentRow = square_->getCoordinates().first;
 	int destRow = squareDest->getCoordinates().first;
 	int currentCollumn = square_->getCoordinates().second;
 	int destCollumn = squareDest->getCoordinates().second;
 
 	// check if end pos is same as start.
-	if (square_ == squareDest.get()) { return false; }
+	if (square_ == squareDest) { return false; }
 
 	// check if we are trying to eat a same collored piece. 
 	else if (squareDest->getPiece()->getColor() == color_) { return false; }
@@ -62,7 +62,7 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 		}
 
 		// check si le déplacement mets notre roi en echec. 
-		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest.get())) {
+		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest)) {
 			return true;
 		}
 		return false;
@@ -90,13 +90,13 @@ bool Tour::checkIfValidMove(std::shared_ptr<Square> squareDest, std::unique_ptr<
 		}
 	}
 	// check si le déplacement mets notre roi en echec. 
-	if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest.get())) {
+	if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest)) {
 		return true;
 	}
 	return false;
 }
 
-bool Tour::checkIfMoveLinear(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier) {
+bool Tour::checkIfMoveLinear(Square* caseToGo, Echiquier* const echiquier) {
 	if ((this->row() == caseToGo->getCoordinates().first) || (this->collumn() == caseToGo->getCoordinates().second)) {
 		return true;
 	}

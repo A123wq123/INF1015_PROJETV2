@@ -6,7 +6,7 @@ class Tour : public Piece {
 public:
 	Tour(Square* square, std::string color);
 	~Tour() override = default;
-	std::vector<std::shared_ptr<Square>> checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) override;
-	bool checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier) override;
-	bool checkIfMoveLinear(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier);
+	std::vector<Square*> checkPossibleMoves(Echiquier* const echiquier) override;
+	bool checkIfValidMove(Square* caseToGo, Echiquier* const echiquier) override;
+	bool checkIfMoveLinear(Square* caseToGo, Echiquier* const echiquier);
 };

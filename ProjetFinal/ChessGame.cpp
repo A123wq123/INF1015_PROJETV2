@@ -1,6 +1,6 @@
 #include "ChessGame.h"
 
-Chess::ChessGame::ChessGame(std::unique_ptr<Echiquier>& echiquier) : echiquer_(echiquier.get()), 
+Chess::ChessGame::ChessGame(Echiquier* const echiquier) : echiquer_(echiquier), 
 	playerTurn_(PlayerTurn::White), gameState_(GameState::Normal)
 {
 	// As per chess rules white is alwasy the one to start.

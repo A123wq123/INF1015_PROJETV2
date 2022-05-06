@@ -5,9 +5,13 @@ Roi::Roi(Square* square, std::string color) : Piece(square,color, color + "King"
 
 }
 
-const std::vector<std::shared_ptr<Square>> Roi::returnVectorMovements(std::unique_ptr<Echiquier>& echiquier) {
+//Roi::Roi(const Roi& roi) : Piece(roi) {
+//	this->setCase(nullptr);
+//}
 
-	std::vector<std::shared_ptr<Square>> vectorSquares{};
+std::vector<Square*> Roi::returnVectorMovements(Echiquier* const echiquier) {
+
+	std::vector<Square*> vectorSquares{};
 
 	// Vector of all possible mouvements. 
 	static std::vector<std::pair<int, int>> vectorMovementVectoriels_ = { std::make_pair(-1, -1), std::make_pair(-1, 0), std::make_pair(-1, 1),
@@ -29,8 +33,8 @@ const std::vector<std::shared_ptr<Square>> Roi::returnVectorMovements(std::uniqu
 	return vectorSquares;
 }
 
-std::vector<std::shared_ptr<Square>> Roi::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
-	std::vector<std::shared_ptr<Square>> vectorPossibleMoves{};
+std::vector<Square*> Roi::checkPossibleMoves(Echiquier* const echiquier) {
+	std::vector<Square*> vectorPossibleMoves{};
 
 	// Iterate over all squares.
 	for (int row = 0; row < echiquier->getNumberOfRows(); row++) {
@@ -45,9 +49,9 @@ std::vector<std::shared_ptr<Square>> Roi::checkPossibleMoves(std::unique_ptr<Ech
 
 }
 
-bool Roi::checkIfValidMove(std::shared_ptr<Square> squareToGo, std::unique_ptr<Echiquier>& echiquier) {
+bool Roi::checkIfValidMove(Square* squareToGo, Echiquier* const echiquier) {
 	// check if dest is same as current.
-	if (squareToGo.get() == square_) { return false; }
+	if (squareToGo == square_) { return false; }
 
 	// Ne pas manger une piece de sa couleur.
 	if (squareToGo->getPiece()->getColor() == color_) { return false; }
@@ -60,7 +64,7 @@ bool Roi::checkIfValidMove(std::shared_ptr<Square> squareToGo, std::unique_ptr<E
 		// check if dest is in the squares around the king. 
 		if (squareToGo == square) {
 			// check if king in check after move.
-			if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareToGo.get())) {
+			if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareToGo)) {
 				return true;
 			}
 		}
@@ -68,7 +72,7 @@ bool Roi::checkIfValidMove(std::shared_ptr<Square> squareToGo, std::unique_ptr<E
 	return false;
 }
 
-bool Roi::checkIfMoveToFar(std::shared_ptr<Square> squareToGo, std::unique_ptr<Echiquier>& echiquier) {
+bool Roi::checkIfMoveToFar(Square* squareToGo, Echiquier* const echiquier) {
 	int diffRow = abs(squareToGo->getCoordinates().first - this->row());
 	int diffCollumn = abs(squareToGo->getCoordinates().second - this->collumn());
 	if ((diffRow < 2) && (diffCollumn < 2)) {

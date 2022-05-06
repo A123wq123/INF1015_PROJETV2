@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include "ChessGame.h"
+#include "Move.h"
 
 // File in wich we create the different errors and methods necessary to debug. 
 
@@ -26,7 +27,7 @@ public:
 // Error associated with king not found.
 class KingNotFound : PieceNotFound {
 public:
-	using PieceNotFound::runtime_error;
+	//using PieceNotFound::runtime_error;
 };
 
 // Class associated with debugging the state of a board (print it in console).
@@ -36,6 +37,7 @@ public:
 	Debugg(Chess::ChessGame chessGame) : chessGame_(chessGame) {}
 	~Debugg() = default;
 	void printBoardState();
+	void lancerSerieTests();
 private:
 	Chess::ChessGame chessGame_; // Might be no need for a pointer here.
 };

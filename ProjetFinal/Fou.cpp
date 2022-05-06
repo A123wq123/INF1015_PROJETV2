@@ -5,8 +5,14 @@ Fou::Fou(Square* square, std::string color) : Piece(square, color, color + "Fou"
 
 }
 
-std::vector<std::shared_ptr<Square>> Fou::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
-	std::vector<std::shared_ptr<Square>> vectorPossibleMoves{};
+//std::shared_ptr<Piece> copy(const std::shared_ptr<Piece> piece)
+//
+//Fou::Fou(const Fou& fou) : Piece(fou) {
+//	this->setCase(nullptr);
+//}
+
+std::vector<Square*> Fou::checkPossibleMoves(Echiquier* const echiquier) {
+	std::vector<Square*> vectorPossibleMoves{};
 
 	for (int row = 0; row < echiquier->getNumberOfRows(); row++) {
 		for (int collumn = 0; collumn < echiquier->getNumberOfCollumns(); collumn++) {
@@ -18,9 +24,9 @@ std::vector<std::shared_ptr<Square>> Fou::checkPossibleMoves(std::unique_ptr<Ech
 	return vectorPossibleMoves;
 }
 
-bool Fou::checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier) {
+bool Fou::checkIfValidMove(Square* caseToGo, Echiquier* const echiquier) {
 	// check if dest is same as start. 
-	if (caseToGo.get() == square_) { return false; }
+	if (caseToGo == square_) { return false; }
 
 	// check if we are trying to eat a same collored piece.
 	if (caseToGo->getPiece()->getColor() == color_) { return false; }
@@ -78,13 +84,13 @@ bool Fou::checkIfValidMove(std::shared_ptr<Square> caseToGo, std::unique_ptr<Ech
 	}
 
 	// check if own king in check after move
-	if (echiquier->isKingInCheckAfterMove(color_, square_, caseToGo.get())) {
+	if (echiquier->isKingInCheckAfterMove(color_, square_, caseToGo)) {
 		return false;
 	}
 	return true; 
 }
 
-bool Fou::checkIfMoveDIagonal(std::shared_ptr<Square> caseToGo, std::unique_ptr<Echiquier>& echiquier) {
+bool Fou::checkIfMoveDIagonal(Square* caseToGo, Echiquier* const echiquier) {
 	int diffRow = abs(caseToGo->getCoordinates().first - this->row());
 	int diffCollumn = abs(caseToGo->getCoordinates().second - this->collumn());
 	if (diffCollumn == diffRow) { return true; }

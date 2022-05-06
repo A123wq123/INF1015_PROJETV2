@@ -9,7 +9,7 @@ void Debugg::printBoardState() {
 			// The null piece doesn't have a name to not interfere with regualr UI
 			// We then have to give it a fictiionnal one here for debugg.
 			if (echiquier->getCase(row, collumn)->getPiece()->getName() == "") {
-				std::cout << " NullPiece " << "|";
+				std::cout << "           " << "|";
 			}
 			else {
 				std::cout << " " << echiquier->getCase(row, collumn)->getPiece()->getName() << " |";
@@ -17,4 +17,19 @@ void Debugg::printBoardState() {
 		}
 		std::cout << std::endl;
 	}
+	std::cout << "--------------------------------------------------------------------------------------"
+		"------------" << std::endl;
+}
+
+void Debugg::lancerSerieTests() {
+	// test #1
+	{
+		this->printBoardState();
+		Move moveObject = Move(chessGame_.getEchiquier()->getCase(2, 2));
+		moveObject.setEndSquare(chessGame_.getEchiquier()->getCase(3, 2));
+		moveObject.executeMove(chessGame_.getEchiquier());
+		this->printBoardState();
+	}
+	
+
 }

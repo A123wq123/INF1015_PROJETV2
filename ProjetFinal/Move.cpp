@@ -1,16 +1,16 @@
 #include "Move.h"
 
-std::vector<std::shared_ptr<Square>> Move::checkPossibleMoves(std::unique_ptr<Echiquier>& echiquier) {
+std::vector<Square*> Move::checkPossibleMoves(Echiquier* const echiquier) {
 	// Ajouter ici que si king en check IMMÉDIATEMENT retourner un vecteur vide. 
 	// Ne pas oublier que cette if statement dois être invalid si la piece est un ROI. 
 	return this->getPiece()->checkPossibleMoves(echiquier);
 }
 
-bool Move::checkIfValidMove(std::unique_ptr<Echiquier>& echiquier) {
-	return this->getPiece()->checkIfValidMove(std::shared_ptr<Square>(endSquare_), echiquier);
+bool Move::checkIfValidMove(Echiquier* const echiquier) {
+	return this->getPiece()->checkIfValidMove(endSquare_, echiquier);
 }
 
-void Move::executeMove(std::unique_ptr<Echiquier>& echiquier) {
+void Move::executeMove(Echiquier* const echiquier) {
 	// méthode qui se charge de faire un mouvement. 
 	if (checkIfValidMove(echiquier)) {
 		endSquare_->addPiece(startSquare_->getPiece());
