@@ -1,4 +1,5 @@
 #include "Tour.h"
+#include <iostream>
 
 //#pragma once
 //#include "Tour.h"
@@ -46,7 +47,7 @@ bool Tour::checkIfValidMove(Square* squareDest, Echiquier* const echiquier, bool
 
 		// check if piece in the way of move
 		if (diff > 0) {
-			for (int i = 1; i <= diff; i++) {
+			for (int i = 1; i < diff; i++) {
 				if (echiquier->getCase(currentRow, currentCollumn - i)->isOccupied()) {
 					return false;
 				}
@@ -54,7 +55,7 @@ bool Tour::checkIfValidMove(Square* squareDest, Echiquier* const echiquier, bool
 		}
 
 		else if (diff < 0) {
-			for (int i = 1; i <= abs(diff); i++) {
+			for (int i = 1; i < abs(diff); i++) {
 				if (echiquier->getCase(currentRow, currentCollumn + i)->isOccupied()) {
 					return false;
 				}
@@ -68,7 +69,7 @@ bool Tour::checkIfValidMove(Square* squareDest, Echiquier* const echiquier, bool
 
 		// Check if piece in way of move. 
 		if (diff > 0) {
-			for (int i = 1; i <= diff; i++) {
+			for (int i = 1; i < diff; i++) {
 				if (echiquier->getCase(currentRow - i, currentCollumn)->isOccupied()) {
 					return false;
 				}
@@ -76,13 +77,14 @@ bool Tour::checkIfValidMove(Square* squareDest, Echiquier* const echiquier, bool
 		}
 
 		else if (diff < 0) {
-			for (int i = 1; i <= abs(diff); i++) {
+			for (int i = 1; i < abs(diff); i++) {
 				if (echiquier->getCase(currentRow + i, currentCollumn)->isOccupied()) {
 					return false;
 				}
 			}
 		}
 	}
+
 	// check si le déplacement mets notre roi en echec. 
 	if (ennableCheckIfKing) {
 		if (false == echiquier->isKingInCheckAfterMove(color_, square_, squareDest)) {

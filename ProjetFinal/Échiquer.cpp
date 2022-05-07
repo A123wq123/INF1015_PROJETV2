@@ -104,10 +104,6 @@ bool Echiquier::isKingInCheckAfterMove(std::string colorOfKing, Square* currentP
 }
 
 bool Echiquier::isKingInCheckMate(std::string colorOfKing) {
-	// get color of enemies.
-	std::string colorOfEnemies;
-	colorOfKing == "White" ? colorOfEnemies = "Black" : colorOfEnemies = "White";
-
 	// checks if king is even in check. 
 	if (false == this->isKingInCheck(colorOfKing)) {
 		return false;
