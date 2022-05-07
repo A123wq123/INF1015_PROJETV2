@@ -750,6 +750,112 @@ void Debugg::lancerSerieTests() {
 		this->resetBoard();
 	}
 
+	// Test #11 king moves into check.
+	{
+		try {
+			std::cout << "Test #11" << std::endl;
+			// move #1
+			std::unique_ptr<Move> movePtr = this->chessGame_.createMoveObject(chessGame_.getEchiquier()->getCase(7, 0));
+			if (movePtr == nullptr) {
+				std::cout << "Move was illegal" << std::endl;
+			}
+			else {
+				movePtr->setEndSquare(chessGame_.getEchiquier()->getCase(1, 0));
+				movePtr->executeMove(chessGame_.getEchiquier());
+				this->chessGame_.determineNextStates();
+			}
+
+			//move #2
+			std::unique_ptr<Move> movePtr2 = this->chessGame_.createMoveObject(chessGame_.getEchiquier()->getCase(0, 4));
+			if (movePtr2 == nullptr) {
+				std::cout << "Move was illegal" << std::endl;
+			}
+			else {
+				movePtr2->setEndSquare(chessGame_.getEchiquier()->getCase(1, 4));
+				movePtr2->executeMove(chessGame_.getEchiquier());
+				this->chessGame_.determineNextStates();
+			}
+			std::cout << "Test passed" << std::endl;
+			std::cout << std::endl;
+		}
+		catch (SquareNotFound& e) {
+			std::cout << "The move tries to go outside the board and so it has been terminated" << std::endl;
+			//std::cout << "Test passed" << std::endl;
+			std::cout << std::endl;
+		}
+		this->resetBoard();
+	}
+
+	//// Test #12 king eat tower (opposite color).
+	//{
+	//	try {
+	//		std::cout << "Test #12" << std::endl;
+	//		// move #1
+	//		std::unique_ptr<Move> movePtr = this->chessGame_.createMoveObject(chessGame_.getEchiquier()->getCase(7, 4));
+	//		if (movePtr == nullptr) {
+	//			std::cout << "Move was illegal" << std::endl;
+	//		}
+	//		else {
+	//			movePtr->setEndSquare(chessGame_.getEchiquier()->getCase(6, 5));
+	//			movePtr->executeMove(chessGame_.getEchiquier());
+	//			this->chessGame_.determineNextStates();
+	//		}
+
+	//		//move #2
+	//		std::unique_ptr<Move> movePtr2 = this->chessGame_.createMoveObject(chessGame_.getEchiquier()->getCase(0, 7));
+	//		if (movePtr2 == nullptr) {
+	//			std::cout << "Move was illegal" << std::endl;
+	//		}
+	//		else {
+	//			movePtr2->setEndSquare(chessGame_.getEchiquier()->getCase(7, 7));
+	//			movePtr2->executeMove(chessGame_.getEchiquier());
+	//			this->chessGame_.determineNextStates();
+	//		}
+
+	//		// move #3
+	//		std::unique_ptr<Move> movePtr3 = this->chessGame_.createMoveObject(chessGame_.getEchiquier()->getCase(6, 5));
+	//		if (movePtr2 == nullptr) {
+	//			std::cout << "Move was illegal" << std::endl;
+	//		}
+	//		else {
+	//			movePtr3->setEndSquare(chessGame_.getEchiquier()->getCase(6, 6));
+	//			movePtr3->executeMove(chessGame_.getEchiquier());
+	//			this->chessGame_.determineNextStates();
+	//		}
+
+	//		// move #4
+	//		std::unique_ptr<Move> movePtr4 = this->chessGame_.createMoveObject(chessGame_.getEchiquier()->getCase(0, 0));
+	//		if (movePtr4 == nullptr) {
+	//			std::cout << "Move was illegal" << std::endl;
+	//		}
+	//		else {
+	//			movePtr4->setEndSquare(chessGame_.getEchiquier()->getCase(7, 0));
+	//			movePtr4->executeMove(chessGame_.getEchiquier());
+	//			this->chessGame_.determineNextStates();
+	//		}
+
+	//		// move #5
+	//		std::unique_ptr<Move> movePtr5 = this->chessGame_.createMoveObject(chessGame_.getEchiquier()->getCase(6, 6));
+	//		if (movePtr2 == nullptr) {
+	//			std::cout << "Move was illegal" << std::endl;
+	//		}
+	//		else {
+	//			movePtr5->setEndSquare(chessGame_.getEchiquier()->getCase(7, 7));
+	//			movePtr5->executeMove(chessGame_.getEchiquier());
+	//			this->chessGame_.determineNextStates();
+	//		}
+
+	//		std::cout << "Test passed" << std::endl;
+	//		std::cout << std::endl;
+	//	}
+	//	catch (SquareNotFound& e) {
+	//		std::cout << "The move tries to go outside the board and so it has been terminated" << std::endl;
+	//		//std::cout << "Test passed" << std::endl;
+	//		std::cout << std::endl;
+	//	}
+	//	this->resetBoard();
+	//}
+
 }
 
 void Debugg::resetBoard() {
