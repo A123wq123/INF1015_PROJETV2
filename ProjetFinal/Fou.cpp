@@ -50,7 +50,7 @@ bool Fou::checkIfValidMove(Square* caseToGo, Echiquier* const echiquier, bool en
 		}
 
 		// check if move "North-East"
-		else if (diffCollumn > 0) {
+		else if (diffCollumn < 0) {
 			// check if piece in way of move.
 			for (int i = 1; i < diffRow; i++) {
 				if (echiquier->getCase(this->row() - i, this->collumn() + i)->isOccupied()) {
